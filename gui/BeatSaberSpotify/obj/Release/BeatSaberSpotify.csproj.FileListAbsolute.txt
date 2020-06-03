@@ -1,0 +1,14 @@
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\bin\Release\BeatSaberSpotify.exe.config
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\bin\Release\BeatSaberSpotify.exe.manifest
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\bin\Release\BeatSaberSpotify.application
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\bin\Release\BeatSaberSpotify.exe
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\bin\Release\BeatSaberSpotify.pdb
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\obj\Release\BeatSaberSpotify.csprojAssemblyReference.cache
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\obj\Release\BeatSaberSpotify.Form1.resources
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\obj\Release\BeatSaberSpotify.Properties.Resources.resources
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\obj\Release\BeatSaberSpotify.csproj.GenerateResource.cache
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\obj\Release\BeatSaberSpotify.csproj.CoreCompileInputs.cache
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\obj\Release\BeatSaberSpotify.exe.manifest
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\obj\Release\BeatSaberSpotify.application
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\obj\Release\BeatSaberSpotify.exe
+C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\obj\Release\BeatSaberSpotify.pdb
