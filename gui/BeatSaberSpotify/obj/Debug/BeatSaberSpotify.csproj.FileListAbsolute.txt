@@ -12,3 +12,17 @@ C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\bin\Debug\Bea
 C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\bin\Debug\BeatSaberSpotify.application
 C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\obj\Debug\BeatSaberSpotify.exe.manifest
 C:\Users\mcdougalls\source\repos\BeatSaberSpotify\BeatSaberSpotify\obj\Debug\BeatSaberSpotify.application
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\bin\Debug\BeatSaberSpotify.exe.config
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\bin\Debug\BeatSaberSpotify.exe.manifest
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\bin\Debug\BeatSaberSpotify.application
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\bin\Debug\BeatSaberSpotify.exe
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\bin\Debug\BeatSaberSpotify.pdb
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\obj\Debug\BeatSaberSpotify.csprojAssemblyReference.cache
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\obj\Debug\BeatSaberSpotify.Form1.resources
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\obj\Debug\BeatSaberSpotify.Properties.Resources.resources
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\obj\Debug\BeatSaberSpotify.csproj.GenerateResource.cache
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\obj\Debug\BeatSaberSpotify.csproj.CoreCompileInputs.cache
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\obj\Debug\BeatSaberSpotify.exe.manifest
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\obj\Debug\BeatSaberSpotify.application
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\obj\Debug\BeatSaberSpotify.exe
+C:\Users\mcdougalls\OneDrive - Wesley College\Documents\BeatSaberSpotify\BeatSaberSpotify\gui\BeatSaberSpotify\obj\Debug\BeatSaberSpotify.pdb

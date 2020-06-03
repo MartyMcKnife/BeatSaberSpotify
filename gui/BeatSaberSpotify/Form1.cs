@@ -137,7 +137,7 @@ namespace BeatSaberSpotify
 
         private void BtnHe_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/MartyMcKnife/BeatSaberSpotify/wiki");
+            System.Diagnostics.Process.Start("https://github.com/MartyMcKnife/BeatSaberSpotify/wiki");
         }
     }
 }
