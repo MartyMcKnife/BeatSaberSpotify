@@ -28,7 +28,7 @@ namespace BeatSaberSpotify
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/MartyMcKnife/BeatSaberSpotify");
+            System.Diagnostics.Process.Start("https://github.com/MartyMcKnife/BeatSaberSpotify/wiki");
         }
 
         private void TextBox2_TextChanged(object sender, EventArgs e)
@@ -137,7 +137,7 @@ namespace BeatSaberSpotify
 
         private void BtnHe_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/MartyMcKnife/BeatSaberSpotify");
+            Process.Start("https://github.com/MartyMcKnife/BeatSaberSpotify/wiki");
         }
     }
 }
