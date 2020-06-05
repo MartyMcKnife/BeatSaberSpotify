@@ -3,9 +3,6 @@ from fuzzywuzzy import fuzz
 import os
 import zipfile
 import io
-import sys
-
-
 
 # we are totally a web browser
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}

@@ -9,18 +9,16 @@ import base64
 import os
 
 current_dir = os.curdir
-
 client_id = os.getenv("SPOTIPY-CLIENT-ID")
 secret_id = os.getenv("SPOTIPY-SECRET-ID")
-
-
-
+print("Got Env Files. Setting them")
 os.environ['SPOTIPY-CLIENT-ID'] = client_id
 os.environ['SPOTIPY-SECRET-ID'] = secret_id
 
 for filenames in os.listdir(current_dir):
-    if os.path.exists(".env"):
+    if filenames.endswith(".env"):
         os.remove(".env")
+        print("Removed Environment File")
 
 # Generates Credentials - Please do not copy these
 try:

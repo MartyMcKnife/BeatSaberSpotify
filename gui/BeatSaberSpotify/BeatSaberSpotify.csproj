@@ -25,7 +25,7 @@
     <MapFileExtensions>false</MapFileExtensions>
     <ProductName>BeatSaberSpotify</ProductName>
     <PublisherName>MartyMcKnife</PublisherName>
-    <ApplicationRevision>12</ApplicationRevision>
+    <ApplicationRevision>14</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

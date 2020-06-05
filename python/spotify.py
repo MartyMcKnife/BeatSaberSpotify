@@ -1,19 +1,28 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 import spotipy
 import spotipy.oauth2 as oauth2
 import re
 import wget
 import base64
 import os
+import sys
 
-client_id = os.environ.get("SPOTIPY-CLIENT-ID")
-secret_id = os.environ.get("SPOTIPY-SECRET-ID")
 
-print(client_id)
-print(secret_id)
+client_id = os.getenv("SPOTIPY-CLIENT-ID")
+secret_id = os.getenv("SPOTIPY-SECRET-ID")
+
+
+
+
 # Generates Credentials - Please do not copy these
-credentials = oauth2.SpotifyClientCredentials(client_id=client_id, client_secret=secret_id)
+credentials = oauth2.SpotifyClientCredentials(
+        client_id=client_id, client_secret=secret_id)
 token = credentials.get_access_token()
 spotify = spotipy.Spotify(auth=token)
+    
+
 
 
 # Below is credit of ritiek - https://github.com/plamere/spotipy/issues/246#issuecomment-358546616

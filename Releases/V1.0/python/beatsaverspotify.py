@@ -6,12 +6,7 @@ from pathlib import Path
 import json
 import sys
 
-if len(sys.argv) > 1:
-    root_path = sys.argv[0]
-    playlist_id = sys.argv[1]
-    username = sys.argv[2]
-else:
-    print("Incorrect Usage: Please enter the values when you run the script", flush=True)
+
 
 
 def beatsaver_spotify(root_path, playlist_id, username):
@@ -75,6 +70,3 @@ def beatsaver_spotify(root_path, playlist_id, username):
 
 
 
-
-def run():
-    beatsaver_spotify(root_path,playlist_id,username)
