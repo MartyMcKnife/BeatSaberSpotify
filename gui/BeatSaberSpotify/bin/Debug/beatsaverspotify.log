@@ -1,0 +1,507 @@
+Creating Log File
+Path:C:\Program Files (x86)\Steam\steamapps\common\Beat Saber
+URI:spotify:playlist:47qyDl2OMGhIQ72AO2pHpT
+Username:Sean
+Opening Log File
+Installing Packages
+C:\Users\Home\AppData\Local\Programs\Python\Python37-32\lib\site-packages\fuzzywuzzy\fuzz.py:11: UserWarning: Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning
+  warnings.warn('Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning')
+C:\Users\Home\AppData\Local\Programs\Python\Python37-32\lib\site-packages\wx\lib\pubsub\__init__.py:25: wxPyDeprecationWarning: wx.lib.pubsub has been deprecated, plese migrate your code to use pypubsub, available on PyPI.
+  wx.wxPyDeprecationWarning)
+
+Please wait a moment while I gather a list of all available modules...
+
+DEPRECATION: The OpenSSL being used by this python install (OpenSSL 1.1.0j  20 Nov 2018) does not meet the minimum supported version (>= OpenSSL 1.1.1) in order to support TLS 1.3 required by Cloudflare, You may encounter an unexpected reCaptcha or cloudflare 1020 blocks.
+PIL                 brain_argparse      functools           re
+PyInstaller         brain_attrs         future              reprlib
+__future__          brain_boto3         fuzzywuzzy          requests
+_abc                brain_builtin_inference gc                  requests_toolbelt
+_ast                brain_collections   genericpath         rlcompleter
+_asyncio            brain_crypt         getopt              rope
+_bisect             brain_curses        getpass             run
+_blake2             brain_dataclasses   gettext             runpy
+_bootlocale         brain_dateutil      glob                sched
+_bz2                brain_fstrings      gzip                secrets
+_codecs             brain_functools     hashlib             select
+_codecs_cn          brain_gi            heapq               selectors
+_codecs_hk          brain_hashlib       hmac                serial
+_codecs_iso2022     brain_http          html                setuptools
+_codecs_jp          brain_io            http                shelve
+_codecs_kr          brain_mechanize     idlelib             shlex
+_codecs_tw          brain_multiprocessing idna                shutil
+_collections        brain_namedtuple_enum imaplib             signal
+_collections_abc    brain_nose          imghdr              site
+_compat_pickle      brain_numpy_core_fromnumeric imp                 six
+_compression        brain_numpy_core_function_base importlib           slugify
+_contextvars        brain_numpy_core_multiarray importlib_metadata  smtpd
+_csv                brain_numpy_core_numeric inspect             smtplib
+_ctypes             brain_numpy_core_numerictypes io                  sndhdr
+_ctypes_test        brain_numpy_core_umath ipaddress           snowballstemmer
+_datetime           brain_numpy_ndarray isort               socket
+_decimal            brain_numpy_random_mtrand itertools           socketserver
+_dummy_thread       brain_numpy_utils   jedi                soupsieve
+_elementtree        brain_pkg_resources json                spotdl
+_functools          brain_pytest        keyword             spotify
+_hashlib            brain_qt            lazy_object_proxy   spotipy
+_heapq              brain_random        lib2to3             sqlite3
+_imp                brain_re            libfuturize         sre_compile
+_io                 brain_responses     libpasteurize       sre_constants
+_json               brain_scipy_signal  linecache           sre_parse
+_locale             brain_six           locale              ssl
+_lsprof             brain_ssl           logging             stat
+_lzma               brain_subprocess    logzero             statistics
+_markupbase         brain_threading     lyricwikia          string
+_md5                brain_typing        lzma                stringprep
+_msi                brain_uuid          macpath             struct
+_multibytecodec     bs4                 mailbox             subprocess
+_multiprocessing    bsdownloader        mailcap             sunau
+_opcode             builtins            marshal             symbol
+_operator           bz2                 math                symtable
+_osx_support        cProfile            mccabe              sys
+_overlapped         calendar            mcstatus            sysconfig
+_pickle             certifi             mimetypes           tabnanny
+_py_abc             cgi                 mmap                tarfile
+_pydecimal          cgitb               modulefinder        telnetlib
+_pyio               chardet             msilib              tempfile
+_queue              chunk               msvcrt              test
+_random             click               multiprocessing     textwrap
+_sha1               cloudscraper        mutagen             this
+_sha256             cmath               netrc               threading
+_sha3               cmd                 nntplib             time
+_sha512             code                nt                  timeit
+_signal             codecs              ntpath              titlecase
+_sitebuiltins       codeop              nturl2path          tkinter
+_socket             collections         numbers             token
+_sqlite3            colorama            numpy               tokenize
+_sre                colorsys            opcode              toml
+_ssl                compileall          operator            trace
+_stat               concurrent          optparse            traceback
+_string             configparser        ordlookup           tracemalloc
+_strptime           contextlib          os                  tty
+_struct             contextvars         pafy                turtle
+_symtable           copy                pandas              turtledemo
+_testbuffer         copyreg             parser              typed_ast
+_testcapi           crypt               parso               types
+_testconsole        csv                 past                typing
+_testimportmultiple ctypes              pathlib             unicodedata
+_testmultiphase     curses              pdb                 unidecode
+_thread             dataclasses         pefile              unittest
+_threading_local    datetime            peutils             urllib
+_tkinter            dateutil            pickle              urllib3
+_tracemalloc        dbm                 pickletools         uu
+_warnings           decimal             pip                 uuid
+_weakref            difflib             pipes               venv
+_weakrefset         dis                 pkg_resources       warnings
+_winapi             distutils           pkgutil             wave
+_yaml               dns                 platform            wcwidth
+abc                 doctest             plistlib            weakref
+aifc                dotenv              pluggy              webbrowser
+altgraph            dummy_threading     poplib              wget
+antigravity         easy_install        posixpath           wheel
+appdirs             ecdsa               pprint              whichcraft
+argparse            eel                 profile             win32ctypes
+array               email               pstats              winreg
+ast                 encodings           pty                 winsound
+astroid             ensurepip           py_compile          wrapt
+asynchat            entrypoints         pyaes               wsgiref
+asyncio             enum                pyclbr              wx
+asyncore            errno               pycodestyle         xdrlib
+atexit              espefuse            pydoc               xml
+audioop             espsecure           pydoc_data          xmlrpc
+auto_py_to_exe      esptool             pydocstyle          xxsubtype
+autopep8            faulthandler        pyexpat             yaml
+base64              filecmp             pyflakes            yapf
+bdb                 fileinput           pylint              yapftests
+beatsaver           flake8              pyls                youtube_dl
+beatsaverspotify    fnmatch             pyls_jsonrpc        zipapp
+binascii            formatter           pytz                zipfile
+binhex              fractions           queue               zipimport
+bisect              ftfy                quopri              zipp
+bottle_websocket    ftplib              random              zlib
+
+Enter any module name to get more help.  Or, type "modules spam" to search
+for modules whose name or summary contain the string "spam".
+
+None
+Installed Available Packages
+Incorrect Usage. Please enter variables alongside command
+Path:C:\Program Files (x86)\Steam\steamapps\common\Beat Saber
+URI:spotify:playlist:47qyDl2OMGhIQ72AO2pHpT
+Username:Sean
+Opening Log File
+Installing Packages
+
+Please wait a moment while I gather a list of all available modules...
+
+PIL                 brain_argparse      functools           re
+PyInstaller         brain_attrs         future              reprlib
+__future__          brain_boto3         fuzzywuzzy          requests
+_abc                brain_builtin_inference gc                  requests_toolbelt
+_ast                brain_collections   genericpath         rlcompleter
+_asyncio            brain_crypt         getopt              rope
+_bisect             brain_curses        getpass             run
+_blake2             brain_dataclasses   gettext             runpy
+_bootlocale         brain_dateutil      glob                sched
+_bz2                brain_fstrings      gzip                secrets
+_codecs             brain_functools     hashlib             select
+_codecs_cn          brain_gi            heapq               selectors
+_codecs_hk          brain_hashlib       hmac                serial
+_codecs_iso2022     brain_http          html                setuptools
+_codecs_jp          brain_io            http                shelve
+_codecs_kr          brain_mechanize     idlelib             shlex
+_codecs_tw          brain_multiprocessing idna                shutil
+_collections        brain_namedtuple_enum imaplib             signal
+_collections_abc    brain_nose          imghdr              site
+_compat_pickle      brain_numpy_core_fromnumeric imp                 six
+_compression        brain_numpy_core_function_base importlib           slugify
+_contextvars        brain_numpy_core_multiarray importlib_metadata  smtpd
+_csv                brain_numpy_core_numeric inspect             smtplib
+_ctypes             brain_numpy_core_numerictypes io                  sndhdr
+_ctypes_test        brain_numpy_core_umath ipaddress           snowballstemmer
+_datetime           brain_numpy_ndarray isort               socket
+_decimal            brain_numpy_random_mtrand itertools           socketserver
+_dummy_thread       brain_numpy_utils   jedi                soupsieve
+_elementtree        brain_pkg_resources json                spotdl
+_functools          brain_pytest        keyword             spotify
+_hashlib            brain_qt            lazy_object_proxy   spotipy
+_heapq              brain_random        lib2to3             sqlite3
+_imp                brain_re            libfuturize         sre_compile
+_io                 brain_responses     libpasteurize       sre_constants
+_json               brain_scipy_signal  linecache           sre_parse
+_locale             brain_six           locale              ssl
+_lsprof             brain_ssl           logging             stat
+_lzma               brain_subprocess    logzero             statistics
+_markupbase         brain_threading     lyricwikia          string
+_md5                brain_typing        lzma                stringprep
+_msi                brain_uuid          macpath             struct
+_multibytecodec     bs4                 mailbox             subprocess
+_multiprocessing    bsdownloader        mailcap             sunau
+_opcode             builtins            marshal             symbol
+_operator           bz2                 math                symtable
+_osx_support        cProfile            mccabe              sys
+_overlapped         calendar            mcstatus            sysconfig
+_pickle             certifi             mimetypes           tabnanny
+_py_abc             cgi                 mmap                tarfile
+_pydecimal          cgitb               modulefinder        telnetlib
+_pyio               chardet             msilib              tempfile
+_queue              chunk               msvcrt              test
+_random             click               multiprocessing     textwrap
+_sha1               cloudscraper        mutagen             this
+_sha256             cmath               netrc               threading
+_sha3               cmd                 nntplib             time
+_sha512             code                nt                  timeit
+_signal             codecs              ntpath              titlecase
+_sitebuiltins       codeop              nturl2path          tkinter
+_socket             collections         numbers             token
+_sqlite3            colorama            numpy               tokenize
+_sre                colorsys            opcode              toml
+_ssl                compileall          operator            trace
+_stat               concurrent          optparse            traceback
+_string             configparser        ordlookup           tracemalloc
+_strptime           contextlib          os                  tty
+_struct             contextvars         pafy                turtle
+_symtable           copy                pandas              turtledemo
+_testbuffer         copyreg             parser              typed_ast
+_testcapi           crypt               parso               types
+_testconsole        csv                 past                typing
+_testimportmultiple ctypes              pathlib             unicodedata
+_testmultiphase     curses              pdb                 unidecode
+_thread             dataclasses         pefile              unittest
+_threading_local    datetime            peutils             urllib
+_tkinter            dateutil            pickle              urllib3
+_tracemalloc        dbm                 pickletools         uu
+_warnings           decimal             pip                 uuid
+_weakref            difflib             pipes               venv
+_weakrefset         dis                 pkg_resources       warnings
+_winapi             distutils           pkgutil             wave
+_yaml               dns                 platform            wcwidth
+abc                 doctest             plistlib            weakref
+aifc                dotenv              pluggy              webbrowser
+altgraph            dummy_threading     poplib              wget
+antigravity         easy_install        posixpath           wheel
+appdirs             ecdsa               pprint              whichcraft
+argparse            eel                 profile             win32ctypes
+array               email               pstats              winreg
+ast                 encodings           pty                 winsound
+astroid             ensurepip           py_compile          wrapt
+asynchat            entrypoints         pyaes               wsgiref
+asyncio             enum                pyclbr              wx
+asyncore            errno               pycodestyle         xdrlib
+atexit              espefuse            pydoc               xml
+audioop             espsecure           pydoc_data          xmlrpc
+auto_py_to_exe      esptool             pydocstyle          xxsubtype
+autopep8            faulthandler        pyexpat             yaml
+base64              filecmp             pyflakes            yapf
+bdb                 fileinput           pylint              yapftests
+beatsaver           flake8              pyls                youtube_dl
+beatsaverspotify    fnmatch             pyls_jsonrpc        zipapp
+binascii            formatter           pytz                zipfile
+binhex              fractions           queue               zipimport
+bisect              ftfy                quopri              zipp
+bottle_websocket    ftplib              random              zlib
+
+Enter any module name to get more help.  Or, type "modules spam" to search
+for modules whose name or summary contain the string "spam".
+
+None
+Installed Available Packages
+Writing 2 tracks to test.txt
+2
+Writing to JSON file. This can take a long time (depending on the size of the playlist)
+Song: A Bloody Beginning already downloaded. Skipping
+Song: Astronomia MIDI already downloaded. Skipping
+Done!
+Got 2 of 2 songs
+Path:C:\Program Files (x86)\Steam\steamapps\common\Beat Saber
+URI:spotify:playlist:47qyDl2OMGhIQ72AO2pHpT
+Username:Sean
+Opening Log File
+Installing Packages
+C:\Users\Home\AppData\Local\Programs\Python\Python37-32\lib\site-packages\fuzzywuzzy\fuzz.py:11: UserWarning: Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning
+  warnings.warn('Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning')
+C:\Users\Home\AppData\Local\Programs\Python\Python37-32\lib\site-packages\wx\lib\pubsub\__init__.py:25: wxPyDeprecationWarning: wx.lib.pubsub has been deprecated, plese migrate your code to use pypubsub, available on PyPI.
+  wx.wxPyDeprecationWarning)
+
+Please wait a moment while I gather a list of all available modules...
+
+DEPRECATION: The OpenSSL being used by this python install (OpenSSL 1.1.0j  20 Nov 2018) does not meet the minimum supported version (>= OpenSSL 1.1.1) in order to support TLS 1.3 required by Cloudflare, You may encounter an unexpected reCaptcha or cloudflare 1020 blocks.
+PIL                 brain_argparse      functools           re
+PyInstaller         brain_attrs         future              reprlib
+__future__          brain_boto3         fuzzywuzzy          requests
+_abc                brain_builtin_inference gc                  requests_toolbelt
+_ast                brain_collections   genericpath         rlcompleter
+_asyncio            brain_crypt         getopt              rope
+_bisect             brain_curses        getpass             run
+_blake2             brain_dataclasses   gettext             runpy
+_bootlocale         brain_dateutil      glob                sched
+_bz2                brain_fstrings      gzip                secrets
+_codecs             brain_functools     hashlib             select
+_codecs_cn          brain_gi            heapq               selectors
+_codecs_hk          brain_hashlib       hmac                serial
+_codecs_iso2022     brain_http          html                setuptools
+_codecs_jp          brain_io            http                shelve
+_codecs_kr          brain_mechanize     idlelib             shlex
+_codecs_tw          brain_multiprocessing idna                shutil
+_collections        brain_namedtuple_enum imaplib             signal
+_collections_abc    brain_nose          imghdr              site
+_compat_pickle      brain_numpy_core_fromnumeric imp                 six
+_compression        brain_numpy_core_function_base importlib           slugify
+_contextvars        brain_numpy_core_multiarray importlib_metadata  smtpd
+_csv                brain_numpy_core_numeric inspect             smtplib
+_ctypes             brain_numpy_core_numerictypes io                  sndhdr
+_ctypes_test        brain_numpy_core_umath ipaddress           snowballstemmer
+_datetime           brain_numpy_ndarray isort               socket
+_decimal            brain_numpy_random_mtrand itertools           socketserver
+_dummy_thread       brain_numpy_utils   jedi                soupsieve
+_elementtree        brain_pkg_resources json                spotdl
+_functools          brain_pytest        keyword             spotify
+_hashlib            brain_qt            lazy_object_proxy   spotipy
+_heapq              brain_random        lib2to3             sqlite3
+_imp                brain_re            libfuturize         sre_compile
+_io                 brain_responses     libpasteurize       sre_constants
+_json               brain_scipy_signal  linecache           sre_parse
+_locale             brain_six           locale              ssl
+_lsprof             brain_ssl           logging             stat
+_lzma               brain_subprocess    logzero             statistics
+_markupbase         brain_threading     lyricwikia          string
+_md5                brain_typing        lzma                stringprep
+_msi                brain_uuid          macpath             struct
+_multibytecodec     bs4                 mailbox             subprocess
+_multiprocessing    bsdownloader        mailcap             sunau
+_opcode             builtins            marshal             symbol
+_operator           bz2                 math                symtable
+_osx_support        cProfile            mccabe              sys
+_overlapped         calendar            mcstatus            sysconfig
+_pickle             certifi             mimetypes           tabnanny
+_py_abc             cgi                 mmap                tarfile
+_pydecimal          cgitb               modulefinder        telnetlib
+_pyio               chardet             msilib              tempfile
+_queue              chunk               msvcrt              test
+_random             click               multiprocessing     textwrap
+_sha1               cloudscraper        mutagen             this
+_sha256             cmath               netrc               threading
+_sha3               cmd                 nntplib             time
+_sha512             code                nt                  timeit
+_signal             codecs              ntpath              titlecase
+_sitebuiltins       codeop              nturl2path          tkinter
+_socket             collections         numbers             token
+_sqlite3            colorama            numpy               tokenize
+_sre                colorsys            opcode              toml
+_ssl                compileall          operator            trace
+_stat               concurrent          optparse            traceback
+_string             configparser        ordlookup           tracemalloc
+_strptime           contextlib          os                  tty
+_struct             contextvars         pafy                turtle
+_symtable           copy                pandas              turtledemo
+_testbuffer         copyreg             parser              typed_ast
+_testcapi           crypt               parso               types
+_testconsole        csv                 past                typing
+_testimportmultiple ctypes              pathlib             unicodedata
+_testmultiphase     curses              pdb                 unidecode
+_thread             dataclasses         pefile              unittest
+_threading_local    datetime            peutils             urllib
+_tkinter            dateutil            pickle              urllib3
+_tracemalloc        dbm                 pickletools         uu
+_warnings           decimal             pip                 uuid
+_weakref            difflib             pipes               venv
+_weakrefset         dis                 pkg_resources       warnings
+_winapi             distutils           pkgutil             wave
+_yaml               dns                 platform            wcwidth
+abc                 doctest             plistlib            weakref
+aifc                dotenv              pluggy              webbrowser
+altgraph            dummy_threading     poplib              wget
+antigravity         easy_install        posixpath           wheel
+appdirs             ecdsa               pprint              whichcraft
+argparse            eel                 profile             win32ctypes
+array               email               pstats              winreg
+ast                 encodings           pty                 winsound
+astroid             ensurepip           py_compile          wrapt
+asynchat            entrypoints         pyaes               wsgiref
+asyncio             enum                pyclbr              wx
+asyncore            errno               pycodestyle         xdrlib
+atexit              espefuse            pydoc               xml
+audioop             espsecure           pydoc_data          xmlrpc
+auto_py_to_exe      esptool             pydocstyle          xxsubtype
+autopep8            faulthandler        pyexpat             yaml
+base64              filecmp             pyflakes            yapf
+bdb                 fileinput           pylint              yapftests
+beatsaver           flake8              pyls                youtube_dl
+beatsaverspotify    fnmatch             pyls_jsonrpc        zipapp
+binascii            formatter           pytz                zipfile
+binhex              fractions           queue               zipimport
+bisect              ftfy                quopri              zipp
+bottle_websocket    ftplib              random              zlib
+
+Enter any module name to get more help.  Or, type "modules spam" to search
+for modules whose name or summary contain the string "spam".
+
+None
+Installed Available Packages
+Incorrect Usage. Please enter variables alongside command
+Path:C:\Program Files (x86)\Steam\steamapps\common\Beat Saber
+URI:spotify:playlist:47qyDl2OMGhIQ72AO2pHpT
+Username:Sean
+Opening Log File
+Installing Packages
+
+Please wait a moment while I gather a list of all available modules...
+
+PIL                 brain_argparse      functools           re
+PyInstaller         brain_attrs         future              reprlib
+__future__          brain_boto3         fuzzywuzzy          requests
+_abc                brain_builtin_inference gc                  requests_toolbelt
+_ast                brain_collections   genericpath         rlcompleter
+_asyncio            brain_crypt         getopt              rope
+_bisect             brain_curses        getpass             run
+_blake2             brain_dataclasses   gettext             runpy
+_bootlocale         brain_dateutil      glob                sched
+_bz2                brain_fstrings      gzip                secrets
+_codecs             brain_functools     hashlib             select
+_codecs_cn          brain_gi            heapq               selectors
+_codecs_hk          brain_hashlib       hmac                serial
+_codecs_iso2022     brain_http          html                setuptools
+_codecs_jp          brain_io            http                shelve
+_codecs_kr          brain_mechanize     idlelib             shlex
+_codecs_tw          brain_multiprocessing idna                shutil
+_collections        brain_namedtuple_enum imaplib             signal
+_collections_abc    brain_nose          imghdr              site
+_compat_pickle      brain_numpy_core_fromnumeric imp                 six
+_compression        brain_numpy_core_function_base importlib           slugify
+_contextvars        brain_numpy_core_multiarray importlib_metadata  smtpd
+_csv                brain_numpy_core_numeric inspect             smtplib
+_ctypes             brain_numpy_core_numerictypes io                  sndhdr
+_ctypes_test        brain_numpy_core_umath ipaddress           snowballstemmer
+_datetime           brain_numpy_ndarray isort               socket
+_decimal            brain_numpy_random_mtrand itertools           socketserver
+_dummy_thread       brain_numpy_utils   jedi                soupsieve
+_elementtree        brain_pkg_resources json                spotdl
+_functools          brain_pytest        keyword             spotify
+_hashlib            brain_qt            lazy_object_proxy   spotipy
+_heapq              brain_random        lib2to3             sqlite3
+_imp                brain_re            libfuturize         sre_compile
+_io                 brain_responses     libpasteurize       sre_constants
+_json               brain_scipy_signal  linecache           sre_parse
+_locale             brain_six           locale              ssl
+_lsprof             brain_ssl           logging             stat
+_lzma               brain_subprocess    logzero             statistics
+_markupbase         brain_threading     lyricwikia          string
+_md5                brain_typing        lzma                stringprep
+_msi                brain_uuid          macpath             struct
+_multibytecodec     bs4                 mailbox             subprocess
+_multiprocessing    bsdownloader        mailcap             sunau
+_opcode             builtins            marshal             symbol
+_operator           bz2                 math                symtable
+_osx_support        cProfile            mccabe              sys
+_overlapped         calendar            mcstatus            sysconfig
+_pickle             certifi             mimetypes           tabnanny
+_py_abc             cgi                 mmap                tarfile
+_pydecimal          cgitb               modulefinder        telnetlib
+_pyio               chardet             msilib              tempfile
+_queue              chunk               msvcrt              test
+_random             click               multiprocessing     textwrap
+_sha1               cloudscraper        mutagen             this
+_sha256             cmath               netrc               threading
+_sha3               cmd                 nntplib             time
+_sha512             code                nt                  timeit
+_signal             codecs              ntpath              titlecase
+_sitebuiltins       codeop              nturl2path          tkinter
+_socket             collections         numbers             token
+_sqlite3            colorama            numpy               tokenize
+_sre                colorsys            opcode              toml
+_ssl                compileall          operator            trace
+_stat               concurrent          optparse            traceback
+_string             configparser        ordlookup           tracemalloc
+_strptime           contextlib          os                  tty
+_struct             contextvars         pafy                turtle
+_symtable           copy                pandas              turtledemo
+_testbuffer         copyreg             parser              typed_ast
+_testcapi           crypt               parso               types
+_testconsole        csv                 past                typing
+_testimportmultiple ctypes              pathlib             unicodedata
+_testmultiphase     curses              pdb                 unidecode
+_thread             dataclasses         pefile              unittest
+_threading_local    datetime            peutils             urllib
+_tkinter            dateutil            pickle              urllib3
+_tracemalloc        dbm                 pickletools         uu
+_warnings           decimal             pip                 uuid
+_weakref            difflib             pipes               venv
+_weakrefset         dis                 pkg_resources       warnings
+_winapi             distutils           pkgutil             wave
+_yaml               dns                 platform            wcwidth
+abc                 doctest             plistlib            weakref
+aifc                dotenv              pluggy              webbrowser
+altgraph            dummy_threading     poplib              wget
+antigravity         easy_install        posixpath           wheel
+appdirs             ecdsa               pprint              whichcraft
+argparse            eel                 profile             win32ctypes
+array               email               pstats              winreg
+ast                 encodings           pty                 winsound
+astroid             ensurepip           py_compile          wrapt
+asynchat            entrypoints         pyaes               wsgiref
+asyncio             enum                pyclbr              wx
+asyncore            errno               pycodestyle         xdrlib
+atexit              espefuse            pydoc               xml
+audioop             espsecure           pydoc_data          xmlrpc
+auto_py_to_exe      esptool             pydocstyle          xxsubtype
+autopep8            faulthandler        pyexpat             yaml
+base64              filecmp             pyflakes            yapf
+bdb                 fileinput           pylint              yapftests
+beatsaver           flake8              pyls                youtube_dl
+beatsaverspotify    fnmatch             pyls_jsonrpc        zipapp
+binascii            formatter           pytz                zipfile
+binhex              fractions           queue               zipimport
+bisect              ftfy                quopri              zipp
+bottle_websocket    ftplib              random              zlib
+
+Enter any module name to get more help.  Or, type "modules spam" to search
+for modules whose name or summary contain the string "spam".
+
+None
+Installed Available Packages
+Writing 2 tracks to test.txt
+2
+Writing to JSON file. This can take a long time (depending on the size of the playlist)
+Song: A Bloody Beginning already downloaded. Skipping
+Song: Astronomia MIDI already downloaded. Skipping
+Done!
+Got 2 of 2 songs

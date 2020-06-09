@@ -1,3 +1,4 @@
+# Import Libraries
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -7,30 +8,15 @@ import re
 import wget
 import base64
 import os
-
-current_dir = os.curdir
-
-client_id = os.getenv("SPOTIPY-CLIENT-ID")
-secret_id = os.getenv("SPOTIPY-SECRET-ID")
+import sys
+import run
 
 
-
-os.environ['SPOTIPY-CLIENT-ID'] = client_id
-os.environ['SPOTIPY-SECRET-ID'] = secret_id
-
-for filenames in os.listdir(current_dir):
-    if os.path.exists(".env"):
-        os.remove(".env")
-
-# Generates Credentials - Please do not copy these
-try:
-    credentials = oauth2.SpotifyClientCredentials(
-        client_id=client_id, client_secret=secret_id)
-    token = credentials.get_access_token()
-    spotify = spotipy.Spotify(auth=token)
-except Exception as e:
-    print(e, flush=True)
-    print("ERROR CONNECTING TO SPOTIFY. See above", flush=True)
+# Generates Credentials
+credentials = oauth2.SpotifyClientCredentials(
+        client_id=run.client_id, client_secret=run.secret_id)
+token = credentials.get_access_token()
+spotify = spotipy.Spotify(auth=token)
     
 
 
@@ -68,7 +54,7 @@ def write_playlist(username, playlist_id):
     write_tracks(text_file, tracks)
     return text_file
 
-
+# Unused function - Why do i still have this?
 def clean_up_file(file, text):
     with open(file, 'a', encoding='utf-8') as file:
         lines = file.readlines()
@@ -77,15 +63,15 @@ def clean_up_file(file, text):
             file.write(clean + "/n")
             return clean
 
-
-def get_playlist_image(playlist_id,path):
+# Fairly Obvious
+def get_playlist_image(playlist_id,path,track_name):
     image = spotify.playlist_cover_image(playlist_id)
     url = image[0]["url"]
-    path_full = os.path.join(path, "cover.png")
+    path_full = os.path.join(path, track_name + str(".png"))
     filename = wget.download(url, path_full)
     return filename
 
-
+#Beatsaber encodes all playlist images in base64. So we need to encode the spotify image
 def base64_encode(path):
     with open(path, "rb") as f:
         encoded=base64.b64encode(f.read())
