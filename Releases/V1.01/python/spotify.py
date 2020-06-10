@@ -16,6 +16,8 @@ except ImportError:
 
 
 
+
+
 # Generates Credentials
 credentials = oauth2.SpotifyClientCredentials(
         client_id=run.client_id, client_secret=run.secret_id)
