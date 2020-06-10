@@ -48,27 +48,24 @@
             // lblPath
             // 
             this.lblPath.AutoSize = true;
-            this.lblPath.Location = new System.Drawing.Point(19, 19);
-            this.lblPath.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPath.Location = new System.Drawing.Point(28, 29);
             this.lblPath.Name = "lblPath";
-            this.lblPath.Size = new System.Drawing.Size(97, 13);
+            this.lblPath.Size = new System.Drawing.Size(145, 20);
             this.lblPath.TabIndex = 0;
             this.lblPath.Text = "Path to Beat Saber";
             // 
             // txtPath
             // 
-            this.txtPath.Location = new System.Drawing.Point(126, 17);
-            this.txtPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPath.Location = new System.Drawing.Point(189, 26);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(173, 20);
+            this.txtPath.Size = new System.Drawing.Size(258, 26);
             this.txtPath.TabIndex = 1;
             // 
             // btnExplore
             // 
-            this.btnExplore.Location = new System.Drawing.Point(302, 16);
-            this.btnExplore.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExplore.Location = new System.Drawing.Point(453, 25);
             this.btnExplore.Name = "btnExplore";
-            this.btnExplore.Size = new System.Drawing.Size(21, 19);
+            this.btnExplore.Size = new System.Drawing.Size(32, 29);
             this.btnExplore.TabIndex = 2;
             this.btnExplore.Text = "...";
             this.btnExplore.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -77,10 +74,9 @@
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(302, 43);
-            this.btnHelp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnHelp.Location = new System.Drawing.Point(453, 66);
             this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(21, 19);
+            this.btnHelp.Size = new System.Drawing.Size(32, 29);
             this.btnHelp.TabIndex = 5;
             this.btnHelp.Text = "?";
             this.btnHelp.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -89,60 +85,54 @@
             // 
             // txtURI
             // 
-            this.txtURI.Location = new System.Drawing.Point(126, 44);
-            this.txtURI.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtURI.Location = new System.Drawing.Point(189, 68);
             this.txtURI.Name = "txtURI";
-            this.txtURI.Size = new System.Drawing.Size(173, 20);
+            this.txtURI.Size = new System.Drawing.Size(258, 26);
             this.txtURI.TabIndex = 4;
             this.txtURI.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
             // 
             // lblURI
             // 
             this.lblURI.AutoSize = true;
-            this.lblURI.Location = new System.Drawing.Point(19, 45);
-            this.lblURI.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblURI.Location = new System.Drawing.Point(28, 69);
             this.lblURI.Name = "lblURI";
-            this.lblURI.Size = new System.Drawing.Size(61, 13);
+            this.lblURI.Size = new System.Drawing.Size(91, 20);
             this.lblURI.TabIndex = 3;
             this.lblURI.Text = "Spotify URI";
             this.lblURI.Click += new System.EventHandler(this.Label1_Click);
             // 
             // txtUser
             // 
-            this.txtUser.Location = new System.Drawing.Point(126, 71);
-            this.txtUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUser.Location = new System.Drawing.Point(189, 109);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(173, 20);
+            this.txtUser.Size = new System.Drawing.Size(258, 26);
             this.txtUser.TabIndex = 7;
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(19, 73);
-            this.lblUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUser.Location = new System.Drawing.Point(28, 112);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(55, 13);
+            this.lblUser.Size = new System.Drawing.Size(83, 20);
             this.lblUser.TabIndex = 6;
             this.lblUser.Text = "Username";
             // 
             // txtOutput
             // 
-            this.txtOutput.Location = new System.Drawing.Point(126, 123);
-            this.txtOutput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtOutput.Location = new System.Drawing.Point(189, 189);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ReadOnly = true;
             this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtOutput.Size = new System.Drawing.Size(199, 64);
+            this.txtOutput.Size = new System.Drawing.Size(296, 96);
             this.txtOutput.TabIndex = 8;
             this.txtOutput.TextChanged += new System.EventHandler(this.TxtOutput_TextChanged);
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(21, 123);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStart.Location = new System.Drawing.Point(32, 189);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(84, 27);
+            this.btnStart.Size = new System.Drawing.Size(126, 42);
             this.btnStart.TabIndex = 9;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -151,6 +141,7 @@
             // browser
             // 
             this.browser.SelectedPath = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Beat Saber";
+            this.browser.HelpRequest += new System.EventHandler(this.Browser_HelpRequest);
             // 
             // pythonRun
             // 
@@ -158,18 +149,16 @@
             // 
             // progress
             // 
-            this.progress.Location = new System.Drawing.Point(21, 98);
-            this.progress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progress.Location = new System.Drawing.Point(32, 151);
             this.progress.Name = "progress";
-            this.progress.Size = new System.Drawing.Size(302, 15);
+            this.progress.Size = new System.Drawing.Size(453, 23);
             this.progress.TabIndex = 10;
             // 
             // btnHe
             // 
-            this.btnHe.Location = new System.Drawing.Point(21, 154);
-            this.btnHe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnHe.Location = new System.Drawing.Point(32, 237);
             this.btnHe.Name = "btnHe";
-            this.btnHe.Size = new System.Drawing.Size(84, 26);
+            this.btnHe.Size = new System.Drawing.Size(126, 40);
             this.btnHe.TabIndex = 11;
             this.btnHe.Text = "Help";
             this.btnHe.UseVisualStyleBackColor = true;
@@ -177,9 +166,9 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 205);
+            this.ClientSize = new System.Drawing.Size(510, 315);
             this.Controls.Add(this.btnHe);
             this.Controls.Add(this.progress);
             this.Controls.Add(this.btnStart);
@@ -193,7 +182,6 @@
             this.Controls.Add(this.txtPath);
             this.Controls.Add(this.lblPath);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "BeatSaberSpotify";
             this.ResumeLayout(false);

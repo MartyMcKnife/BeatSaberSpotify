@@ -206,6 +206,11 @@ namespace BeatSaberSpotify
         {
             System.Diagnostics.Process.Start("https://github.com/MartyMcKnife/BeatSaberSpotify/wiki");
         }
+
+        private void Browser_HelpRequest(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 //Archive
