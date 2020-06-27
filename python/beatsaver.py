@@ -42,7 +42,8 @@ def get_song_info(song_name):
 
 
 def download_song_from_id(id,song_name,username,path):
-    #  get the url
+    
+    # get the url
     url = 'https://beatsaver.com/api/download/key/' + str(id)
     resp = requests.get(url, headers=headers, stream=True)
     folder_path = os.path.join(path, '{0} {1} - {2}'.format(id, song_name, username))
@@ -50,9 +51,9 @@ def download_song_from_id(id,song_name,username,path):
     if not os.path.isdir(folder_path):
         z = zipfile.ZipFile(io.BytesIO(resp.content))
         z.extractall(folder_path)
-        print("Downloaded {0}".format(song_name), flush=True)
+        print("Downloaded {0}".format(song_name), flush=True).encode('utf-8')
     else:
-        print("Song: {0} already downloaded. Skipping".format(song_name), flush=True)
+        print("Song: {0} already downloaded. Skipping".format(song_name), flush=True).encode('utf-8')
 
 
 def check_correct(returned_song_name, required_song_name, threshold):
