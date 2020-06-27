@@ -1,4 +1,10 @@
-import pyyoutube
+import run
+try:
+    import pyyoutube
+except ImportError as identifier:
+    run.install('pyyoutube')
+    import pyyoutube
+
 
 api = pyyoutube.Api(api_key='AIzaSyApqowLWESOEORFMzsHQKM74zgBZH8juzc')
 

@@ -7,9 +7,14 @@ import run
 try:
     import requests
     from fuzzywuzzy import fuzz
+    import wget
 except ImportError:
     run.install('requests')
     run.install('fuzzywuzzy')
+    run.install('wget')
+    import requests
+    from fuzzywuzzy import fuzz
+    import wget
 
 # we are totally a web browser
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
@@ -46,14 +51,15 @@ def download_song_from_id(id,song_name,username,path):
     # get the url
     url = 'https://beatsaver.com/api/download/key/' + str(id)
     resp = requests.get(url, headers=headers, stream=True)
-    folder_path = os.path.join(path, '{0} {1} - {2}'.format(id, song_name, username))
+    refined_song = song_name.replace('/', '')
+    folder_path = os.path.join(path, '{0} {1} - {2}'.format(id, refined_song, username))
     # stolen from stack overflow - gets the song download id, downloads, and copies it into a zip file with the correct name
     if not os.path.isdir(folder_path):
         z = zipfile.ZipFile(io.BytesIO(resp.content))
         z.extractall(folder_path)
-        print("Downloaded {0}".format(song_name), flush=True).encode('utf-8')
+        print("Downloaded {0}".format(song_name).encode('utf-8'), flush=True)
     else:
-        print("Song: {0} already downloaded. Skipping".format(song_name), flush=True).encode('utf-8')
+        print("Song: {0} already downloaded. Skipping".format(song_name).encode('utf-8'), flush=True)
 
 
 def check_correct(returned_song_name, required_song_name, threshold):

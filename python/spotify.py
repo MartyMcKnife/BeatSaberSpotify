@@ -13,6 +13,7 @@ except ImportError:
     import spotipy
     import spotipy.oauth2 as oauth2
     run.install('wget')
+    import wget
 
 
 
@@ -53,7 +54,7 @@ def write_playlist(username, playlist_id):
                                     fields='tracks,next,name')
     text_file = u'{0}.txt'.format(results['name'], ok='-_()[]{}')
     print(u'Writing {0} tracks to {1}'.format(
-            results['tracks']['total'], text_file), flush=True)
+            results['tracks']['total'], text_file).encode("utf-8"), flush=True)
     tracks = results['tracks']
     write_tracks(text_file, tracks)
     return text_file

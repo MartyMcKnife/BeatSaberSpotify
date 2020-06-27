@@ -63,6 +63,7 @@ def beatsaver_spotify(root_path, playlist_id, username):
                 got_songs += 1
                 #Get all the song info we need
                 songID, songHash, songName, username = bs.get_song_info(line)
+                
                 # Add songs to the dict
                 keys = ['songName', 'hash']
                 names = [songName, songHash]
@@ -79,5 +80,6 @@ def beatsaver_spotify(root_path, playlist_id, username):
         f.write(stuff)
         print('Done!', flush=True)
         print('Got {0} of {1} songs'.format(got_songs, total_songs.encode('utf-8')), flush=True)
+
 
 
