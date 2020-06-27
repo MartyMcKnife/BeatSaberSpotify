@@ -16,6 +16,7 @@ if len(sys.argv) > 1:
     global secret_id
     secret_id = sys.argv[5]
 
+    
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -23,6 +24,6 @@ def install(package):
 
         
 if __name__ == "__main__":
-    bs.beatsaver_spotify(root_path,uri,username)
+    bs.beatsaver_spotify("C:\Program Files (x86)\Steam\steamapps\common\Beat Saber", uri, username)
 else:
     print("Incorrect Usage. Please enter variables alongside command", flush=True)
