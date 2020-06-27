@@ -51,7 +51,7 @@ def beatsaver_spotify(root_path, playlist_id, username):
         }
 
     #Open the file
-    with open(file_name, 'r') as f:
+    with open(file_name, 'r', encoding='utf-8') as f:
         #Get a list of all songs, and store it in variable. Also gets total number of songs
         lines = [line.rstrip() for line in f]
         total_songs = len(lines)
@@ -78,6 +78,6 @@ def beatsaver_spotify(root_path, playlist_id, username):
         stuff = json.dumps(playlist, indent=4, sort_keys=True)
         f.write(stuff)
         print('Done!', flush=True)
-        print('Got {0} of {1} songs'.format(got_songs, total_songs), flush=True)
+        print('Got {0} of {1} songs'.format(got_songs, total_songs.encode('utf-8')), flush=True)
 
 

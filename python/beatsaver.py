@@ -34,11 +34,11 @@ def get_song_info(song_name):
         if check_correct(songName, song_name, 65) == True:
             return songID, songHash, songName, username
         else:
-            print("Song: {0} not found. Skipping".format(song_name), flush=True)
+            print("Song: {0} not found. Skipping".format(song_name.encode('utf-8')), flush=True)
     except KeyError:
-        print("Song: {0} not found. Skipping".format(song_name), flush=True)
+        print("Song: {0} not found. Skipping".format(song_name.encode('utf-8')), flush=True)
     except IndexError:
-        print("Song: {0} not found. Skipping".format(song_name), flush=True)
+        print("Song: {0} not found. Skipping".format(song_name.encode('utf-8')), flush=True)
 
 
 def download_song_from_id(id,song_name,username,path):
@@ -52,7 +52,7 @@ def download_song_from_id(id,song_name,username,path):
         z.extractall(folder_path)
         print("Downloaded {0}".format(song_name), flush=True)
     else:
-        print("Song: {0} already downloaded. Skipping".format(song_name), flush=True)
+        print("Song: {0} already downloaded. Skipping".format(song_name.encode('utf-8')), flush=True)
 
 
 def check_correct(returned_song_name, required_song_name, threshold):
