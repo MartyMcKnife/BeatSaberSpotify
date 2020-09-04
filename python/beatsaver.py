@@ -56,7 +56,11 @@ def download_song_from_id(id,song_name,username,path):
     # stolen from stack overflow - gets the song download id, downloads, and copies it into a zip file with the correct name
     if not os.path.isdir(folder_path):
         z = zipfile.ZipFile(io.BytesIO(resp.content))
-        z.extractall(folder_path)
+        try:
+            z.extractall(folder_path)
+        except Exception as e:
+            print(e, flush=True)
+            print('File has illegal characters. Skipping', flush=True)
         print("Downloaded {0}".format(song_name).encode('utf-8'), flush=True)
     else:
         print("Song: {0} already downloaded. Skipping".format(song_name).encode('utf-8'), flush=True)
