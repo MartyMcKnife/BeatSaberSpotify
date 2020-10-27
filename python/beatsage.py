@@ -1,4 +1,3 @@
-
 from zipfile import ZipFile
 import os
 import json
@@ -9,6 +8,7 @@ import pkg_resources
 import sys
 import string
 import random
+import id
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -44,8 +44,6 @@ def request_song(youtubeUrl, songCover, songTitle, songArtist, path):
 
     idResponse = requests.post(createUrl, obj, headers)
 
-    id = json.loads(idResponse.text)['id']
-
 
 
     while(json.loads((requests.get(heartBeatUrl + id, headers)).text)['status'] == "PENDING"):
@@ -66,6 +64,8 @@ def request_song(youtubeUrl, songCover, songTitle, songArtist, path):
         z.extractall(folder_path)
 
     os.remove(folder_path + '.zip')
+
+    mapId = id.get_id(folder_path)
 
     return mapId
 
