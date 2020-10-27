@@ -1,8 +1,5 @@
 import sys
-import subprocess
-import pkg_resources
 import beatsaverspotify as bs
-import os
 
 if len(sys.argv) > 1:
     root_path = sys.argv[1]
@@ -16,14 +13,9 @@ if len(sys.argv) > 1:
     global secret_id
     secret_id = sys.argv[5]
 
-    
 
-def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
 
         
-if __name__ == "__main__":
-    bs.beatsaver_spotify("C:\Program Files (x86)\Steam\steamapps\common\Beat Saber", uri, username)
-else:
-    print("Incorrect Usage. Please enter variables alongside command", flush=True)
+
+

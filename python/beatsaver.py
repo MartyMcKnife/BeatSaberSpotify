@@ -1,17 +1,20 @@
-
 import os
-import zipfile
+from zipfile import ZipFile
 import io
 import sys
-import run
+import subprocess
+import pkg_resources
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 try:
     import requests
     from fuzzywuzzy import fuzz
     import wget
 except ImportError:
-    run.install('requests')
-    run.install('fuzzywuzzy')
-    run.install('wget')
+    install('requests')
+    install('fuzzywuzzy')
+    install('wget')
     import requests
     from fuzzywuzzy import fuzz
     import wget
@@ -19,10 +22,10 @@ except ImportError:
 # we are totally a web browser
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
-
-def get_song_info(song_name):
+def get_song_info(track):
+    trackParsed = track.replace(" ", "%20")
     # get the url
-    url = "https://beatsaver.com/api/search/text/page:?q=" + str(song_name)
+    url = "https://beatsaver.com/api/search/text/page:?q=" + str(trackParsed)
     # say hi to beatsaver, and see if he has the song
     resp = requests.get(url, headers=headers)
     info = resp.json()
@@ -30,20 +33,22 @@ def get_song_info(song_name):
     content = info["docs"]
     # return the first key, hash and name
     try:
-
         songID = content[0]["key"]
         songHash = content[0]["hash"]
         songName = content[0]["name"]
         uploader = content[0]['uploader']
         username = uploader['username']
-        if check_correct(songName, song_name, 65) == True:
-            return songID, songHash, songName, username
+        if check_correct(songName, track, 65) == True:
+            stats = content[0]["stats"]
+            upvotes = stats["upVotes"]
+            downvotes = stats["downVotes"]
+            if int(upvotes) > int(downvotes):
+                return songID, songHash, songName, username
         else:
-            print("Song: {0} not found. Skipping".format(song_name.encode('utf-8')), flush=True)
-    except KeyError:
-        print("Song: {0} not found. Skipping".format(song_name.encode('utf-8')), flush=True)
-    except IndexError:
-        print("Song: {0} not found. Skipping".format(song_name.encode('utf-8')), flush=True)
+            print("Song: {0} not found. Falling back to BeatSage".format(track.encode('utf-8')), flush=True)
+
+    except:
+        print("Song: {0} not found. Falling back to BeatSage".format(track.encode('utf-8')), flush=True)
 
 
 def download_song_from_id(id,song_name,username,path):
@@ -52,10 +57,10 @@ def download_song_from_id(id,song_name,username,path):
     url = 'https://beatsaver.com/api/download/key/' + str(id)
     resp = requests.get(url, headers=headers, stream=True)
     refined_song = song_name.replace('/', '')
-    folder_path = os.path.join(path, '{0} {1} - {2}'.format(id, refined_song, username))
+    folder_path = os.path.join(path, '{0} ({1} - {2})'.format(id, refined_song, username))
     # stolen from stack overflow - gets the song download id, downloads, and copies it into a zip file with the correct name
     if not os.path.isdir(folder_path):
-        z = zipfile.ZipFile(io.BytesIO(resp.content))
+        z = ZipFile(io.BytesIO(resp.content))
         try:
             z.extractall(folder_path)
         except Exception as e:

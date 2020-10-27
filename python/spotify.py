@@ -1,25 +1,28 @@
-import re
 import base64
 import os
 import sys
-import run
+import subprocess
+import pkg_resources
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
 try:
     import spotipy
     import spotipy.oauth2 as oauth2
     import wget
 except ImportError:
-    run.install('spotipy')
+    install('spotipy')
     import spotipy
     import spotipy.oauth2 as oauth2
-    run.install('wget')
+    install('wget')
     import wget
 
 
 
 # Generates Credentials
 credentials = oauth2.SpotifyClientCredentials(
-        client_id=run.client_id, client_secret=run.secret_id)
+        client_id="0ae28390d808489dae0689e77389de23", client_secret="6d3cbce3d4b7426897c65301972509a9")
 token = credentials.get_access_token()
 spotify = spotipy.Spotify(auth=token)
     
@@ -27,7 +30,9 @@ spotify = spotipy.Spotify(auth=token)
 
 
 # Below is credit of ritiek - https://github.com/plamere/spotipy/issues/246#issuecomment-358546616
-def write_tracks(text_file, tracks):
+# Gets all songs and artists in playlist, and writes them to a text file
+# Also gets all covers of the albums for Beat Sage, to make indexing easier
+def write_tracks(text_file, tracks, pathForCovers):
     with open(text_file, 'w+', encoding='utf-8') as file_out:
         while True:
             for item in tracks['items']:
@@ -35,12 +40,26 @@ def write_tracks(text_file, tracks):
                     track = item['track']
                 else:
                     track = item
+                
                 try:
-                    track_url = track['name']
-                    file_out.write(track_url + '\n')
+                    if "Tracks" in text_file:
+                        track_url = track['name']
+                        file_out.write(track_url + '\n')
+                    # Write Artists to Text File
+                    elif "Artists" in text_file:
+                        artists = track['artists']
+                        artistsName = artists[0]['name']
+                        file_out.write(artistsName + '\n')
                 except KeyError:
                     print(u'Skipping track {0} by {1} (local only?)'.format(
                             track['name'], track['artists'][0]['name']), flush=True)
+                #Download Album Cover
+                if pathForCovers != False:
+                    images = track["album"]["images"]
+                    url = images[0]["url"]
+                    path_full = os.path.join(pathForCovers, track['name'] + str(".png"))
+                    wget.download(url, path_full)
+
             # 1 page = 50 results
             # check if there are more pages
             if tracks['next']:
@@ -49,30 +68,30 @@ def write_tracks(text_file, tracks):
                 break
 
 
-def write_playlist(username, playlist_id):
-    results = spotify.user_playlist(username, playlist_id,
-                                    fields='tracks,next,name')
-    text_file = u'{0}.txt'.format(results['name'], ok='-_()[]{}')
-    print(u'Writing {0} tracks to {1}'.format(
-            results['tracks']['total'], text_file).encode("utf-8"), flush=True)
-    tracks = results['tracks']
-    write_tracks(text_file, tracks)
+def write_playlist(username, playlist_id, pathForCovers):
+    results = spotify.user_playlist(username, playlist_id, fields='tracks,next,name')
+    attributesToGet = ["Tracks", "Artists"]
+
+
+    for item in attributesToGet:
+        text_file = u'{0} - {1}.txt'.format(results['name'],item, ok='-_()[]{}')
+        print(u'Writing {0} {1} to {2}'.format(
+            results['tracks']['total'], item, text_file).encode("utf-8"), flush=True)
+        tracks = results['tracks']
+        if item == "Tracks":
+            write_tracks(text_file, tracks, pathForCovers)
+        else:
+            write_tracks(text_file, tracks, False)
     return text_file
+    
 
-# Unused function - Why do i still have this?
-def clean_up_file(file, text):
-    with open(file, 'a', encoding='utf-8') as file:
-        lines = file.readlines()
-        for line in lines:
-            clean = re.sub("^https", "", line)
-            file.write(clean + "/n")
-            return clean
 
-# Fairly Obvious
-def get_playlist_image(playlist_id,path,track_name):
+
+# Gets Playlist Image
+def get_playlist_image(playlist_id,path,playlist_name):
     image = spotify.playlist_cover_image(playlist_id)
     url = image[0]["url"]
-    path_full = os.path.join(path, track_name + str(".png"))
+    path_full = os.path.join(path, playlist_name + str(".png"))
     filename = wget.download(url, path_full)
     return filename
 
@@ -81,3 +100,5 @@ def base64_encode(path):
     with open(path, "rb") as f:
         encoded=base64.b64encode(f.read())
         return encoded.decode('utf-8')
+
+
