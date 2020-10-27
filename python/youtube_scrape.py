@@ -15,6 +15,7 @@ except ImportError:
 
 
 def scrape_songs_from_youtube(song,artist):
+    print("Getting link from YouTube", flush="utf-8")
     results = YoutubeSearch("{0} - {1}".format(song, artist), max_results=1).to_json()
     try:
         resultsDict = (json.loads(results))["videos"]

@@ -6,9 +6,7 @@ import base64
 import subprocess
 import pkg_resources
 import sys
-import string
-import random
-import id
+import idgrabber
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -27,8 +25,6 @@ def request_song(youtubeUrl, songCover, songTitle, songArtist, path):
     heartBeatUrl = "https://beatsage.com/beatsaber_custom_level_heartbeat/"
     downloadUrl = "https://beatsage.com/beatsaber_custom_level_download/"
 
-    mapId = ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
-
 
 
     obj = {
@@ -44,6 +40,8 @@ def request_song(youtubeUrl, songCover, songTitle, songArtist, path):
 
     idResponse = requests.post(createUrl, obj, headers)
 
+    id = json.loads(idResponse.text)['id']
+
 
 
     while(json.loads((requests.get(heartBeatUrl + id, headers)).text)['status'] == "PENDING"):
@@ -55,7 +53,7 @@ def request_song(youtubeUrl, songCover, songTitle, songArtist, path):
     
     download = requests.get(downloadUrl + id, headers)
 
-    folder_path = os.path.join(path, '{0} ({1} - {2})'.format(mapId, songTitle, songArtist))
+    folder_path = os.path.join(path, 'BeatSage ({0} - {1})'.format(songTitle, songArtist))
 
     with open(folder_path +".zip", "wb") as f:
         f.write(download.content)
@@ -65,7 +63,7 @@ def request_song(youtubeUrl, songCover, songTitle, songArtist, path):
 
     os.remove(folder_path + '.zip')
 
-    mapId = id.get_id(folder_path)
+    mapId = idgrabber.get_id(folder_path)
 
     return mapId
 

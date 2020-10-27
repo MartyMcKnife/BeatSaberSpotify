@@ -77,20 +77,22 @@ def beatsaver_spotify(root_path, playlist_id, username):
                     #Download arr songs
                     got_songs += 1
                     bs.download_song_from_id(songID, songName, username, beatsaber_song_path)
-                    #The library always throughs exceptions when something is missing, and then when you try and set variables to nothing it gets grmupy. So some silly error handling
+                    #The library always throws exceptions when something is missing, and then when you try and set variables to nothing it gets grmupy. So some silly error handling
                 except TypeError:
                     print("", flush=True)
 
                     #Generate Song through BeatSage
                     link = yt.scrape_songs_from_youtube(track, artist)
+                    # Check if it exists
                     if len(link) > 0:
                         got_songs += 1
+                        # Checks if song already exists in the directory. If not, we download it
                         if not os.path.isdir(os.path.join(beatsaber_song_path, "{0} - {1}".format(track, artist))):
                             mapId = ai.request_song(link, track + ".png", track, artist, beatsaber_song_path)
                         else:
                             print("Song: {0} already exists. Skipping generation".format(track).encode('utf-8'), flush=True)
 
-                        keysAI = ['songName', "levelId"]
+                        keysAI = ['songName', "hash"]
                         namesAI = [track, mapId]
                         playlist["songs"].append(dict(zip(keysAI, namesAI)))
                     else:
@@ -98,13 +100,15 @@ def beatsaver_spotify(root_path, playlist_id, username):
                     
 
                 print('Current' + str(current_songs), flush=True)
+
+            
         # Write the dict to the json file
-        with open(os.path.join(beatsaber_playlist_path, "{0}.json".format(playlist_name.rstrip())), 'w+') as f:
-            print("Creating Playlist File", flush=True)
-            stuff = json.dumps(playlist, indent=4, sort_keys=True)
-            f.write(stuff)
-            print('Done!', flush=True)
-            print('Got {0} of {1} songs'.format(got_songs, total_songs), flush=True)
+    with open(os.path.join(beatsaber_playlist_path, "{0}.json".format(playlist_name.rstrip())), 'w+') as f:
+        print("Creating Playlist File", flush=True)
+        stuff = json.dumps(playlist, indent=4, sort_keys=True)
+        f.write(stuff)
+        print('Done!', flush=True)
+        print('Got {0} of {1} songs'.format(got_songs, total_songs), flush=True)
 
 
 
