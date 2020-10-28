@@ -7,6 +7,7 @@ import subprocess
 import pkg_resources
 import sys
 import idgrabber
+import shutil
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -29,7 +30,6 @@ def request_song(youtubeUrl, songCover, songTitle, songArtist, path):
 
     obj = {
         "youtube_url": youtubeUrl,
-        "cover_art": songCover,
         "audio_metadata_title": songTitle,
         "audio_metadata_artist": songArtist,
         "difficulties": "Hard,Expert,ExpertPlus",
@@ -38,7 +38,8 @@ def request_song(youtubeUrl, songCover, songTitle, songArtist, path):
         "system_tag":"v2-flow"
     }
 
-    idResponse = requests.post(createUrl, obj, headers)
+
+    idResponse = requests.post(createUrl, data=obj, headers=headers)
 
     id = json.loads(idResponse.text)['id']
 
@@ -61,10 +62,15 @@ def request_song(youtubeUrl, songCover, songTitle, songArtist, path):
     with ZipFile(folder_path +".zip", "r") as z:
         z.extractall(folder_path)
 
-    os.remove(folder_path + '.zip')
+    shutil.move(songCover, os.path.join(folder_path, "cover.jpg"))
 
+    os.remove(folder_path + '.zip')
+    os.remove(songCover)
+    print("Downloaded!", flush=True)
     mapId = idgrabber.get_id(folder_path)
 
     return mapId
+
+
 
 

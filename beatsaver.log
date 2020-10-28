@@ -1,8 +1,0 @@
-Hello World!
-Called from a C# Script
-Bye
-Total 5
-Traceback (most recent call last):
-  File "c:\Users\mcdougalls\OneDrive - Wesley College\test.py", line 35, in <module>
-    output = 1/0
-ZeroDivisionError: division by zero
