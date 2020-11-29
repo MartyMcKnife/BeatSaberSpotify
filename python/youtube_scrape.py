@@ -5,33 +5,42 @@ import sys
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
 try:
-    from youtube_search import YoutubeSearch
+    import requests
 except ImportError:
-    install("youtube-search")
-    import youtube_search
+    install("requests")
+    import requests
+
+class youtubeSearch:
+    def __init__(self):
+        self.API_KEY = "AIzaSyD_yFlfIHjLlnok73b3iS8x6389ZFEr9AM"
+    def scrape_songs_from_youtube(self, song, artist):
+        print("Getting link from YouTube", flush=True)
+        id, duration = self.YoutubeSearch("{0} - {1}".format(song, artist), 1)
+        try:
+            if len(duration) >= 8:
+                print("Song is longer than 10 Minutes. Skipping", flush=True)
+            else:
+                return "https://www.youtube.com/watch?v=" + str(id)
+        except:
+            print('')
+        
 
 
-
-def scrape_songs_from_youtube(song,artist):
-    print("Getting link from YouTube", flush="utf-8")
-    results = YoutubeSearch("{0} - {1}".format(song, artist), max_results=1).to_json()
-    try:
-        resultsDict = (json.loads(results))["videos"]
-
-        url = resultsDict[0]["id"]
-        if len(resultsDict[0]["duration"]) < 5:
-            return "https://youtube.com/watch?v=" + url
-        else:
-            print("Video is longer than 10 minutes - Skipping", flush=True)
-            return ""
-    except KeyError:
-        print("Could not find video on YouTube - Skipping", flush=True)
-        return ""
-    
-
-
-
+    def YoutubeSearch(self, query, results):
+        """
+        Searches Youtube for given string
+        """
+        refinedQuery = query.replace(" ", "%20")
+        try:
+            request = requests.get("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q={0}&fields=items%2Fid%2FvideoId&key={1}".format(refinedQuery, self.API_KEY))
+            id = request.json()["items"][0]["id"]["videoId"]
+            durationResp = requests.get("https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails&id={0}&items%2FcontentDetails%2Fduration&key={1}".format(id, self.API_KEY))
+            duration = durationResp.json()["items"][0]["contentDetails"]["duration"]
+            return id, duration
+        except:
+            print("Song cannot be found on YouTube. Skipping", flush=True)
+       
+        
 
 
