@@ -32,7 +32,7 @@ class SpotifyAPI:
 # Gets all songs and artists in playlist, and writes them to a text file
 # Also gets all covers of the albums for Beat Sage, to make indexing easier
     def write_tracks(self, text_file, tracks, pathForCovers):
-        with open(text_file, 'w+', encoding='utf-8') as file_out:
+        with open(text_file, 'w+', encoding='utf-16') as file_out:
             while True:
                 for item in tracks['items']:
                     if 'track' in item:

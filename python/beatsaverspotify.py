@@ -9,11 +9,11 @@ import sys
 import beatsage as ai
 import youtube_scrape as yt
 import idgrabber 
+import multiprocessing as mp
 
 class BeatSaberSpotify:
     def __init__(self, root_path, username, playlist_id, headsetType):
         self.total_songs = 0
-        self.got_songs = 0
         self.download_directory = os.path.join(os.getcwd(), "downloads")
         Path(self.download_directory).mkdir(parents=True, exist_ok=True)
         if headsetType == "sidequest":
@@ -36,7 +36,7 @@ class BeatSaberSpotify:
             ]
 
         }
-        self.run(username, playlist_id)
+        
     def SpotifyWriter(self, username, playlist_id):
         """
         Fetches all required info from spotify
@@ -69,6 +69,8 @@ class BeatSaberSpotify:
             bsSongName = songName
             bsUsername = artistName
         os.remove(songCover)
+        bs.got_songs += 1
+        print(u'Current' + str(bs.got_songs))
         return idgrabber.get_id(os.path.join(self.custom_songs_directory, "{0} ({1} - {2})".format(bsSongId, bsSongName, bsUsername)))
     
     def addToJson(self, jsonFile):
@@ -78,31 +80,34 @@ class BeatSaberSpotify:
         with open(jsonFile, 'w+') as f:
             stuff = json.dumps(self.playlist_template, indent=4, sort_keys=True)
             f.write(stuff)
+        
+
     
     def run(self, username, playlist_id):
         self.SpotifyWriter(username, playlist_id)
         self.playlist_template['playlistTitle'] = self.playlist_name
         self.playlist_template['image'] = "data:image/png;base64," + self.encoded_image
 
-        with open(self.artist_file, 'r', encoding='utf-8') as a:
-            with open(self.track_file, 'r', encoding='utf-8') as t:
+        with open(self.artist_file, 'r', encoding='utf-16') as a:
+            with open(self.track_file, 'r', encoding='utf-16') as t:
                 tracks = [line.rstrip() for line in t]
                 artists = [line.rstrip() for line in a]
-                total_songs = len(tracks)
-                print(u'Total' + str(total_songs))
-                print(u'Collecting songs from BeatSaber and BeatSage. This can take a while, depending on the size of the playlist')
-                for track, artist in zip(tracks, artists):
-                    print("Grabbing {0} by {1}".format(track, artist))
-                    id = self.downloadSong(track, artist)
-                    keys = ['songName', "hash"]
-                    names = [track, id]
-                    self.playlist_template["songs"].append(dict(zip(keys, names)))
-                    self.got_songs += 1
-                    print(u'Current' + str(self.got_songs))
-                    self.addToJson(os.path.join(self.custom_playlists_directory, "{0}.json".format(self.playlist_name)))
+                self.total_songs = len(tracks)
+                print('Total' + str(self.total_songs), flush=True)
+                print('Collecting songs from BeatSaber and BeatSage. This can take a while, depending on the size of the playlist', flush=True)
+                items = list(zip(tracks, artists))
+                with mp.Pool(processes=mp.cpu_count() - 1) as p:
+                    ids = p.starmap(self.downloadSong, items)
                 
+                songDict = [
+                    {'songName': songName,
+                    'hash': hash} for songName, hash in zip(tracks, ids)
+                ]
+                
+                self.playlist_template["songs"].append(songDict)
+                self.addToJson(os.path.join(self.custom_playlists_directory, "{0}.json".format(self.playlist_name)))
                 print('Done!', flush=True)
-                print('Got {0} of {1} songs'.format(self.got_songs, self.total_songs), flush=True)
+                print('Got {0} of {1} songs'.format(bs.got_songs, self.total_songs), flush=True)
         os.remove(self.artist_file)
         os.remove(self.track_file)
                 

@@ -19,6 +19,8 @@ except ImportError:
     from fuzzywuzzy import fuzz
     import wget
 
+got_songs = 0
+
 class BeatSaver:
     def __init__(self):
         self.headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
@@ -31,9 +33,10 @@ class BeatSaver:
         resp = requests.get(url, headers=self.headers)
         info = resp.json()
         # refine result
-        content = info["docs"]
+        
         # return the first key, hash and name
         try:
+            content = info["docs"]
             for i in range(4):
                 songID = content[i]["key"]
                 songName = content[i]["name"]
@@ -46,10 +49,10 @@ class BeatSaver:
                         return songID, songName, username
                     else:
                         print("Song: {0} has low upvotes. Falling back to BeatSage".format(track), flush=True)
-                print("Song: {0} not found. Falling back to BeatSage".format(track), flush=True)
+                print("Song: {0} not found. Falling back to BeatSage".format(track).encode('utf-8'), flush=True)
             return None, None, None
-        except KeyError:
-            print("Song: {0} does not exist. Falling back to BeatSage".format(track), flush=True)
+        except (KeyError, IndexError):
+            print("Song: {0} does not exist. Falling back to BeatSage".format(track).encode('utf-8'), flush=True)
             return None, None, None
 
 

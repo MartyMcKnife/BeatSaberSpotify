@@ -33,7 +33,7 @@ class BeatSage:
         if not os.path.isdir(self.folder_path):
             self.request_song(songCover, songTitle, songArtist, path, unzip)
         else:
-            print(u'Song {0} has already been generated. Skipping'.format(songTitle))
+            print(u'Song {0} has already been generated. Skipping'.format(songTitle).encode('utf-8'))
 
     def remove_from_zip(self, zipfname, *filenames):
             tempdir = tempfile.mkdtemp()

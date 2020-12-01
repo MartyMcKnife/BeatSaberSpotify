@@ -20,7 +20,13 @@ if len(sys.argv) > 1:
     print("Headset:" + headsetType)
     if headsetType in sidequestHeadsets:
         headsetType = "sidequest"
-    bs.BeatSaberSpotify(root_path, username, uri, unzip)
+    
+root_path = 'C:\Program Files (x86)\Steam\steamapps\common\Beat Saber'
+username = 'Sean'
+uri = 'spotify:playlist:76I3PWDYjNyJ0z8mAnMxEq'
+headsetType = 'notsidequest'
 
 
 
+if __name__ == '__main__':
+    bs.BeatSaberSpotify(root_path, username, uri, headsetType).run(username, uri)
