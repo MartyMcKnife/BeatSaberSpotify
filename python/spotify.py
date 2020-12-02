@@ -33,8 +33,10 @@ class SpotifyAPI:
 # Also gets all covers of the albums for Beat Sage, to make indexing easier
     def write_tracks(self, text_file, tracks, pathForCovers):
         with open(text_file, 'w+', encoding='utf-16') as file_out:
+            i = 0
             while True:
                 for item in tracks['items']:
+                    i+=1
                     if 'track' in item:
                         track = item['track']
                     else:
@@ -56,6 +58,8 @@ class SpotifyAPI:
                                 track['name'], track['artists'][0]['name']), flush=True)
                     #Download Album Cover
                     if pathForCovers != False:
+                        if i == 1:
+                            print('Downloading Album covers')
                         images = track["album"]["images"]
                         url = images[0]["url"]
                         filename = track["name"]

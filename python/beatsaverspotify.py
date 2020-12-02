@@ -58,21 +58,26 @@ class BeatSaberSpotify:
         if bsSongId != None:
             downloader.download_song_from_id(bsSongId, bsSongName, bsUsername, self.custom_songs_directory, self.unzip)
         elif bsSongId == None:
-            ai.BeatSage(
+            downloaded = ai.BeatSage(
                 songCover,
                 songName,
                 artistName,
                 self.custom_songs_directory,
                 self.unzip
             )
-            bsSongId = "BeatSage"
-            bsSongName = songName
-            bsUsername = artistName
+            if downloaded == None:
+                bsSongId = None
+            else:
+                bsSongId = "BeatSage"
+                bsSongName = songName
+                bsUsername = artistName
         os.remove(songCover)
-        bs.got_songs += 1
-        print(u'Current' + str(bs.got_songs))
-        return idgrabber.get_id(os.path.join(self.custom_songs_directory, "{0} ({1} - {2})".format(bsSongId, bsSongName, bsUsername)))
-    
+        if bsSongId != None:
+            bs.got_songs += 1
+            print(u'Current' + str(bs.got_songs))
+            return idgrabber.get_id(os.path.join(self.custom_songs_directory, "{0} ({1} - {2})".format(bsSongId, bsSongName, bsUsername)))
+        else:
+            return ''
     def addToJson(self, jsonFile):
         """
         Adds given track to Beatsaber Playlist
@@ -96,8 +101,11 @@ class BeatSaberSpotify:
                 print('Total' + str(self.total_songs), flush=True)
                 print('Collecting songs from BeatSaber and BeatSage. This can take a while, depending on the size of the playlist', flush=True)
                 items = list(zip(tracks, artists))
-                with mp.Pool(processes=mp.cpu_count() - 1) as p:
-                    ids = p.starmap(self.downloadSong, items)
+                ids = []
+                for item in items:
+                    ids.append(self.downloadSong(*item))
+                # with mp.Pool(processes=mp.cpu_count() - 1) as p:
+                #     ids = p.starmap(self.downloadSong, items)
                 
                 songDict = [
                     {'songName': songName,

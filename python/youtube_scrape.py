@@ -16,10 +16,14 @@ class youtubeSearch:
         self.API_KEY = "AIzaSyD_yFlfIHjLlnok73b3iS8x6389ZFEr9AM"
     def scrape_songs_from_youtube(self, song, artist):
         print("Getting link from YouTube", flush=True)
-        id, duration = self.YoutubeSearch("{0} - {1}".format(song, artist), 1)
+        id, duration, allowed = self.YoutubeSearch("{0} - {1}".format(song, artist), 1)
         try:
             if len(duration) >= 8:
                 print("Song is longer than 10 Minutes. Skipping", flush=True)
+                return None
+            elif allowed != True:
+                print("Song is blocked in the US, so BeatSage cannot download it. Skipping", flush=True)
+                return None
             else:
                 return "https://www.youtube.com/watch?v=" + str(id)
         except:
@@ -33,11 +37,15 @@ class youtubeSearch:
         """
         refinedQuery = query.replace(" ", "%20")
         try:
+            allowed = True
             request = requests.get("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q={0}&fields=items%2Fid%2FvideoId&key={1}".format(refinedQuery, self.API_KEY))
             id = request.json()["items"][0]["id"]["videoId"]
-            durationResp = requests.get("https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails&id={0}&items%2FcontentDetails%2Fduration&key={1}".format(id, self.API_KEY))
-            duration = durationResp.json()["items"][0]["contentDetails"]["duration"]
-            return id, duration
+            contentResp = requests.get("https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails&id={0}&items%2FcontentDetails%2Fduration&key={1}".format(id, self.API_KEY))
+            duration = contentResp.json()["items"][0]["contentDetails"]["duration"]
+            allowedList = contentResp.json()['items'][0]['contentDetails']['allowed']
+            if "US" not in allowedList:
+                allowed = False
+            return id, duration, allowed
         except:
             print("Song cannot be found on YouTube. Skipping", flush=True)
        

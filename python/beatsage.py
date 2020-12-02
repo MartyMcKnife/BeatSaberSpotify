@@ -57,49 +57,50 @@ class BeatSage:
         youtube = yt.youtubeSearch()
         youtubeUrl = youtube.scrape_songs_from_youtube(songTitle, songArtist)
 
+        if youtubeUrl != None:
+            obj = {
+                "youtube_url": youtubeUrl,
+                "audio_metadata_title": songTitle,
+                "audio_metadata_artist": songArtist,
+                "difficulties": "Hard,Expert,ExpertPlus",
+                "modes":"Standard",
+                "events":"DotBlocks,Obstacles",
+                "system_tag":"v2"
+            }
 
-        obj = {
-            "youtube_url": youtubeUrl,
-            "audio_metadata_title": songTitle,
-            "audio_metadata_artist": songArtist,
-            "difficulties": "Hard,Expert,ExpertPlus",
-            "modes":"Standard",
-            "events":"DotBlocks,Obstacles",
-            "system_tag":"v2"
-        }
 
+            idResponse = requests.post(self.createUrl, data=obj, headers=self.headers)
 
-        idResponse = requests.post(self.createUrl, data=obj, headers=self.headers)
+            id = json.loads(idResponse.text)['id']
 
-        id = json.loads(idResponse.text)['id']
+            while(json.loads((requests.get(self.heartBeatUrl + id, self.headers)).text)['status'] == "PENDING"):
+                print("Waiting for BeatSage to create the level, job order is {0}".format(id), flush=True)
+                time.sleep(10)
 
-        while(json.loads((requests.get(self.heartBeatUrl + id, self.headers)).text)['status'] == "PENDING"):
-            print("Waiting for BeatSage to create the level, job order is {0}".format(id), flush=True)
-            time.sleep(10)
-
+                
+            print("Song has finished generating! Downloading now", flush=True)
             
-        print("Song has finished generating! Downloading now", flush=True)
-        
-        download = requests.get(self.downloadUrl + id, self.headers)
+            download = requests.get(self.downloadUrl + id, self.headers)
 
-        if download.status_code == 200:
-            with open(self.zipPath, "wb+") as f:
-                f.write(download.content)
+            if download.status_code == 200:
+                with open(self.zipPath, "wb+") as f:
+                    f.write(download.content)
 
-            with ZipFile(self.zipPath, "a") as z:
-                if unzip == True:
-                    os.mkdir(self.folder_path)
-                    z.extractall(self.folder_path)
-                    shutil.copy(songCover, os.path.join(self.folder_path, "cover.jpg"))
-                elif unzip == False:
-                    self.remove_from_zip(self.zipPath, 'cover.jpg')
-                    z.write(songCover, arcname="cover.jpg")
-            if unzip == True: os.remove(self.zipPath)
-            print("Downloaded!", flush=True)
+                with ZipFile(self.zipPath, "a") as z:
+                    if unzip == True:
+                        os.mkdir(self.folder_path)
+                        z.extractall(self.folder_path)
+                        shutil.copy(songCover, os.path.join(self.folder_path, "cover.jpg"))
+                    elif unzip == False:
+                        self.remove_from_zip(self.zipPath, 'cover.jpg')
+                        z.write(songCover, arcname="cover.jpg")
+                if unzip == True: os.remove(self.zipPath)
+                print("Downloaded!", flush=True)
+            else:
+                raise SystemError("BeatSage had an unexpected server error, or is down. Please try again later. Server Response Code: {0}".format(download.status_code))
         else:
-            raise SystemError("BeatSage had an unexpected server error, or is down. Please try again later. Server Response Code: {0}".format(download.status_code))
-
-        
+            return None
+            
 
 
 

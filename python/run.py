@@ -1,6 +1,16 @@
 import sys
 import beatsaverspotify as bs
 import os
+#TODO 
+# Add to json after download
+# Logging
+# Add headset type to gui
+# FIXME
+# Current doesn't work
+# UTF Chars in ID Path
+# Formatting and Commenting
+# output
+
 
 sidequestHeadsets = ['Quest', 'Quest 2']
 unzip = True
