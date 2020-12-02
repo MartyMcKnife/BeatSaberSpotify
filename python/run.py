@@ -33,7 +33,7 @@ if len(sys.argv) > 1:
     
 root_path = 'C:\Program Files (x86)\Steam\steamapps\common\Beat Saber'
 username = 'Sean'
-uri = 'spotify:playlist:76I3PWDYjNyJ0z8mAnMxEq'
+uri = 'spotify:playlist:1EnsSHaJHnXqbRsgioBNYj'
 headsetType = 'notsidequest'
 
 

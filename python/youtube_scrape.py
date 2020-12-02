@@ -16,8 +16,9 @@ class youtubeSearch:
         self.API_KEY = "AIzaSyD_yFlfIHjLlnok73b3iS8x6389ZFEr9AM"
     def scrape_songs_from_youtube(self, song, artist):
         print("Getting link from YouTube", flush=True)
+
         id, duration, allowed = self.YoutubeSearch("{0} - {1}".format(song, artist), 1)
-        try:
+        if id != None:
             if len(duration) >= 8:
                 print("Song is longer than 10 Minutes. Skipping", flush=True)
                 return None
@@ -26,8 +27,8 @@ class youtubeSearch:
                 return None
             else:
                 return "https://www.youtube.com/watch?v=" + str(id)
-        except:
-            print('')
+        else:
+            return id
         
 
 
@@ -48,6 +49,7 @@ class youtubeSearch:
             return id, duration, allowed
         except:
             print("Song cannot be found on YouTube. Skipping", flush=True)
+            return None, None, None
        
         
 

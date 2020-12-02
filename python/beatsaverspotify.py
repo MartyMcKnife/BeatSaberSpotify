@@ -58,7 +58,7 @@ class BeatSaberSpotify:
         if bsSongId != None:
             downloader.download_song_from_id(bsSongId, bsSongName, bsUsername, self.custom_songs_directory, self.unzip)
         elif bsSongId == None:
-            downloaded = ai.BeatSage(
+            downloaded = ai.BeatSage(songName, artistName, self.custom_songs_directory).request_song(
                 songCover,
                 songName,
                 artistName,

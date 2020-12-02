@@ -49,7 +49,7 @@ class BeatSaver:
                         return songID, songName, username
                     else:
                         print("Song: {0} has low upvotes. Falling back to BeatSage".format(track), flush=True)
-                if i==4:
+                if i>4:
                     print("Song: {0} not found. Falling back to BeatSage".format(track).encode('utf-8'), flush=True)
             return None, None, None
         except (KeyError, IndexError):
