@@ -4,8 +4,8 @@ import json
 
 
 def get_id(pathToFolder):
-
-    with open(os.path.join(pathToFolder, "Info.dat"), "r") as i:
+    path = os.path.join(pathToFolder, "Info.dat")
+    with open(path, "r", encoding='utf-8', errors='ignore') as i:
         thing_to_hash = i.read()
 
         jsonfile = json.loads(thing_to_hash)

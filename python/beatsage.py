@@ -82,15 +82,17 @@ class BeatSage:
                     with open(self.zipPath, "wb+") as f:
                         f.write(download.content)
 
-                    with ZipFile(self.zipPath, "a") as z:
-                        if unzip == True:
+                    
+                    if unzip == True:
+                        with ZipFile(self.zipPath, "r") as z:
                             os.mkdir(self.folder_path)
                             z.extractall(self.folder_path)
                             shutil.copy(songCover, os.path.join(self.folder_path, "cover.jpg"))
-                        elif unzip == False:
-                            self.remove_from_zip(self.zipPath, 'cover.jpg')
+                        os.remove(self.zipPath)
+                    elif unzip == False:
+                        self.remove_from_zip(self.zipPath, 'cover.jpg')
+                        with ZipFile(self.zipPath, "a") as z:
                             z.write(songCover, arcname="cover.jpg")
-                    if unzip == True: os.remove(self.zipPath)
                     print("Downloaded!", flush=True)
                     return 'done'
                 else:
@@ -98,8 +100,8 @@ class BeatSage:
             else:
                 return None
         else:
-            print('Song {0} is already generated. Skipping', flush=True)
-            return None
+            print('Song {0} is already generated. Skipping'.format(songTitle).encode('utf-8'), flush=True)
+            return 'done'
 
 
 

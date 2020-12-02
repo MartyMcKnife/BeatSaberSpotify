@@ -43,14 +43,13 @@ class youtubeSearch:
             id = request.json()["items"][0]["id"]["videoId"]
             contentResp = requests.get("https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails&id={0}&items%2FcontentDetails%2Fduration&key={1}".format(id, self.API_KEY))
             duration = contentResp.json()["items"][0]["contentDetails"]["duration"]
-            allowedList = contentResp.json()['items'][0]['contentDetails']['allowed']
-            if "US" not in allowedList:
-                allowed = False
+            allowedList = contentResp.json()['items'][0]['contentDetails']
+            if "regionRestriction" in allowedList:
+                if "US" not in allowedList['regionRestriction']['allowed']:
+                    allowed = False
             return id, duration, allowed
-        except:
+        except (KeyError, IndexError):
             print("Song cannot be found on YouTube. Skipping", flush=True)
             return None, None, None
        
         
-
-

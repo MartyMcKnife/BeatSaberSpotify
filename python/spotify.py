@@ -52,6 +52,8 @@ class SpotifyAPI:
                         elif "Artists" in text_file:
                             artists = track['artists']
                             artistsName = artists[0]['name']
+                            for char in self.invalid:
+                                artistsName = artistsName.replace(char, '')
                             file_out.write(artistsName + '\n')
                     except KeyError:
                         print(u'Skipping track {0} by {1} (local only?)'.format(

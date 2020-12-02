@@ -6,10 +6,9 @@ import os
 # Logging
 # Add headset type to gui
 # FIXME
-# Current doesn't work
-# UTF Chars in ID Path
+# Current is mcbroken
 # Formatting and Commenting
-# output
+# output with multiprocessing is pretty shit
 
 
 sidequestHeadsets = ['Quest', 'Quest 2']
@@ -33,7 +32,7 @@ if len(sys.argv) > 1:
     
 root_path = 'C:\Program Files (x86)\Steam\steamapps\common\Beat Saber'
 username = 'Sean'
-uri = 'spotify:playlist:1EnsSHaJHnXqbRsgioBNYj'
+uri = 'spotify:playlist:76I3PWDYjNyJ0z8mAnMxEq'
 headsetType = 'notsidequest'
 
 

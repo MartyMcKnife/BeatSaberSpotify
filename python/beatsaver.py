@@ -41,7 +41,7 @@ class BeatSaver:
                 songID = content[i]["key"]
                 songName = content[i]["name"]
                 username = content[i]['uploader']['username']
-                if self.check_correct(songName, track, 60) == True:
+                if self.check_correct(songName, track, 70) == True:
                     stats = content[i]["stats"]
                     upvotes = stats["upVotes"]
                     downvotes = stats["downVotes"]

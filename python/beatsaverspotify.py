@@ -44,7 +44,7 @@ class BeatSaberSpotify:
         spotify = sp.SpotifyAPI()
         self.artist_file = spotify.write_playlist(username, playlist_id, self.download_directory)
         self.track_file = self.artist_file.replace("- Artists.txt", "- Tracks.txt")
-        self.playlist_name = self.artist_file.replace("- Artists.txt", "")
+        self.playlist_name = self.artist_file.replace(" - Artists.txt", "")
         image = spotify.get_playlist_image(playlist_id, self.download_directory, self.playlist_name)
         self.encoded_image = spotify.base64_encode(os.path.join(self.download_directory, image))
         os.remove(image)
@@ -101,11 +101,8 @@ class BeatSaberSpotify:
                 print('Total' + str(self.total_songs), flush=True)
                 print('Collecting songs from BeatSaber and BeatSage. This can take a while, depending on the size of the playlist', flush=True)
                 items = list(zip(tracks, artists))
-                ids = []
-                for item in items:
-                    ids.append(self.downloadSong(*item))
-                # with mp.Pool(processes=mp.cpu_count() - 1) as p:
-                #     ids = p.starmap(self.downloadSong, items)
+                with mp.Pool(processes=mp.cpu_count() - 1) as p:
+                    ids = p.starmap(self.downloadSong, items)
                 
                 songDict = [
                     {'songName': songName,
