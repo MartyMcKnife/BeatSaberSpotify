@@ -18,6 +18,7 @@ except ImportError:
     install('wget')
     import wget
 
+got_songs = 0
 
 class SpotifyAPI:
     def __init__(self):

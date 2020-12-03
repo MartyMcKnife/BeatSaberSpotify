@@ -19,7 +19,6 @@ except ImportError:
     from fuzzywuzzy import fuzz
     import wget
 
-got_songs = 0
 
 class BeatSaver:
     def __init__(self):
