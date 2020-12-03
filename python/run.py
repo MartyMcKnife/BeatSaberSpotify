@@ -30,7 +30,7 @@ if len(sys.argv) > 1:
     if headsetType in sidequestHeadsets:
         headsetType = "sidequest"
     
-root_path = 'C:\Program Files (x86)\Steam\steamapps\common\Beat Saber'
+root_path = os.getcwd()
 username = 'Sean'
 uri = 'spotify:playlist:76I3PWDYjNyJ0z8mAnMxEq'
 headsetType = 'notsidequest'

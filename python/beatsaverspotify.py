@@ -73,18 +73,32 @@ class BeatSaberSpotify:
                 bsUsername = artistName
         os.remove(songCover)
         if bsSongId != None:
-            bs.got_songs += 1
-            print(u'Current' + str(bs.got_songs))
+            sp.got_songs += 1
+            print(u'Current' + str(sp.got_songs))
             return idgrabber.get_id(os.path.join(self.custom_songs_directory, "{0} ({1} - {2})".format(bsSongId, bsSongName, bsUsername)))
         else:
             return ''
-    def addToJson(self, jsonFile):
+    def addToJson(self, jsonFile, write=False, songName=None, hash=None):
         """
         Adds given track to Beatsaber Playlist
         """
-        with open(jsonFile, 'w+') as f:
-            stuff = json.dumps(self.playlist_template, indent=4, sort_keys=True)
-            f.write(stuff)
+        if write == True:
+            with open(jsonFile, 'w+') as f:
+                stuff = json.dumps(self.playlist_template, indent=4, sort_keys=True)
+                print(self.playlist_template)
+                f.write(stuff)
+        elif write == False:
+            with open(jsonFile, 'r') as f:
+                songlist = json.load(f)
+                songlist['songs'].append(
+                    {
+                        'songName': songName,
+                        'hash': hash
+                    }
+                )
+                f.write(json.dumps(songlist, indent=4, sort_keys=True))
+
+
         
 
     
@@ -92,6 +106,9 @@ class BeatSaberSpotify:
         self.SpotifyWriter(username, playlist_id)
         self.playlist_template['playlistTitle'] = self.playlist_name
         self.playlist_template['image'] = "data:image/png;base64," + self.encoded_image
+        self.addToJson(os.path.join(self.custom_playlists_directory,
+                                    "{0}.json".format(self.playlist_name)), write=True)
+
 
         with open(self.artist_file, 'r', encoding='utf-16') as a:
             with open(self.track_file, 'r', encoding='utf-16') as t:
@@ -110,10 +127,14 @@ class BeatSaberSpotify:
                 ]
                 
                 self.playlist_template["songs"].append(songDict)
-                self.addToJson(os.path.join(self.custom_playlists_directory, "{0}.json".format(self.playlist_name)))
                 print('Done!', flush=True)
-                print('Got {0} of {1} songs'.format(bs.got_songs, self.total_songs), flush=True)
+                print('Got {0} of {1} songs'.format(sp.got_songs, self.total_songs), flush=True)
         os.remove(self.artist_file)
         os.remove(self.track_file)
                 
 
+path = os.path.join(os.getcwd(), 'test.json')
+
+BeatSaberSpotify(os.getcwd(), 'Seen', '1234', 'notSidequest').addToJson(path, write=True)
+BeatSaberSpotify(os.getcwd(), 'Seen', '1234', 'notSidequest').addToJson(
+    path, songName='Beeg', hash='1234')
