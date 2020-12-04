@@ -1,14 +1,14 @@
 import sys
 import beatsaverspotify as bs
 import os
+import multiprocessing as mp
 #TODO 
-# Add to json after download
 # Logging
 # Add headset type to gui
 # FIXME
-# Current is mcbroken
 # Formatting and Commenting
 # output with multiprocessing is pretty shit
+
 
 
 sidequestHeadsets = ['Quest', 'Quest 2']
@@ -30,12 +30,12 @@ if len(sys.argv) > 1:
     if headsetType in sidequestHeadsets:
         headsetType = "sidequest"
     
-root_path = os.getcwd()
+root_path = 'C:\Program Files (x86)\Steam\steamapps\common\Beat Saber'
 username = 'Sean'
-uri = 'spotify:playlist:76I3PWDYjNyJ0z8mAnMxEq'
+uri = 'spotify:playlist:13rpYuI9gVAYJxIlJ4ZZSt'
 headsetType = 'notsidequest'
-
 
 
 if __name__ == '__main__':
     bs.BeatSaberSpotify(root_path, username, uri, headsetType).run(username, uri)
+    
