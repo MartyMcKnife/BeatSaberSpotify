@@ -4,6 +4,7 @@ import io
 import sys
 import subprocess
 import pkg_resources
+import logging
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -40,7 +41,9 @@ class BeatSaver:
                 songID = content[i]["key"]
                 songName = content[i]["name"]
                 username = content[i]['uploader']['username']
-                if self.check_correct(songName, track, 70) == True:
+                correct = fuzz.token_sort_ratio(songName, track)
+                logging.debug(f'Certainty for {track}: {correct} (Returned song is {songName})')
+                if correct > 70:
                     stats = content[i]["stats"]
                     upvotes = stats["upVotes"]
                     downvotes = stats["downVotes"]
@@ -48,7 +51,7 @@ class BeatSaver:
                         return songID, songName, username
                     else:
                         print("Song: {0} has low upvotes. Falling back to BeatSage".format(track), flush=True)
-                if i==4:
+                if i==3:
                     print("Song: {0} not found. Falling back to BeatSage".format(track).encode('utf-8'), flush=True)
             return None, None, None
         except (KeyError, IndexError):
@@ -65,6 +68,7 @@ class BeatSaver:
             song_name = song_name.replace(char, '')
 
         folder_path = os.path.join(root_path, '{0} ({1} - {2})'.format(id, song_name, username))
+        logging.debug(f'Folder path is {folder_path}')
         # stolen from stack overflow - gets the song download id, downloads, and copies it into a zip file with the correct name
         if not os.path.isdir(folder_path):
             if unzip == True:
@@ -74,14 +78,11 @@ class BeatSaver:
                 with open(folder_path + ".zip", 'wb') as f:
                     f.write(resp.content) 
             print("Downloaded {0}".format(song_name).encode('utf-8'), flush=True)
+            logging.info("Downloaded {0}".format(song_name).encode('utf-8'))
         else:
             print("Song: {0} already downloaded. Skipping".format(song_name).encode('utf-8'), flush=True)
+            logging.info("Song: {0} already downloaded. Skipping".format(song_name).encode('utf-8'))
 
 
-    def check_correct(self,returned_song_name, required_song_name, threshold):
-        # use complicated maf to check the ratio of how accurate the song is
-        check = fuzz.token_sort_ratio(returned_song_name, required_song_name)
-        # if it is above the threshold, then we have found it. otherwise DENIED
-        if check > threshold:
-            return True
+
 

@@ -9,6 +9,7 @@ import sys
 import shutil
 import youtube_scrape as yt
 import tempfile
+import logging
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -30,7 +31,7 @@ class BeatSage:
         self.downloadUrl = "https://beatsage.com/beatsaber_custom_level_download/"
         self.folder_path = os.path.join(path, 'BeatSage ({0} - {1})'.format(songTitle, songArtist))
         self.zipPath = self.folder_path + ".zip"
-
+        logging.debug(f'Folder Path: {self.folder_path}')
     def remove_from_zip(self, zipfname, *filenames):
             tempdir = tempfile.mkdtemp()
             try:
@@ -52,6 +53,7 @@ class BeatSage:
         if not os.path.isdir(self.folder_path):
             youtube = yt.youtubeSearch()
             youtubeUrl = youtube.scrape_songs_from_youtube(songTitle, songArtist)
+            logging.debug(f'YoutubeUrl: {youtubeUrl}')
 
             if youtubeUrl != None:
                 obj = {
@@ -71,6 +73,7 @@ class BeatSage:
 
                 while(json.loads((requests.get(self.heartBeatUrl + id, self.headers)).text)['status'] == "PENDING"):
                     print("Waiting for BeatSage to create the level, job order is {0}".format(id), flush=True)
+                    logging.info("Waiting for BeatSage to create the level, job order is {0}".format(id))
                     time.sleep(10)
 
                     
@@ -80,6 +83,7 @@ class BeatSage:
 
                 if download.status_code == 200:
                     with open(self.zipPath, "wb+") as f:
+                        logging.debug(f'Downloading song, status code is {download.status_code}')
                         f.write(download.content)
 
                     
@@ -101,6 +105,8 @@ class BeatSage:
                 return None
         else:
             print('Song {0} is already generated. Skipping'.format(songTitle).encode('utf-8'), flush=True)
+            logging.info('Song {0} is already generated. Skipping'.format(songTitle).encode('utf-8'))
+
             return 'done'
 
 

@@ -10,6 +10,7 @@ import beatsage as ai
 import youtube_scrape as yt
 import idgrabber 
 import multiprocessing as mp
+import logging
 
 
 
@@ -24,6 +25,13 @@ class BeatSaberSpotify:
         self.unzip = True
         self.custom_songs_directory = os.path.join(root_path, "Beat Saber_Data\\CustomLevels")
         self.custom_playlists_directory = os.path.join(root_path, 'Playlists')
+        self.invalid = '<>"|?*\/'
+
+        logging.info(f'Download Directory: {self.download_directory}')
+        logging.info(f'Custom Songs Directory: {self.custom_songs_directory}')
+        logging.info(f'Custom Playlists Directory: {self.custom_playlists_directory}')
+        logging.info(f'Unzip?: {self.unzip}')
+        
 
         
 
@@ -45,6 +53,7 @@ class BeatSaberSpotify:
         """
         Fetches all required info from spotify
         """
+        logging.info('Speaking to Spotify API')
         spotify = sp.SpotifyAPI()
         self.artist_file = spotify.write_playlist(username, playlist_id, self.download_directory)
         self.track_file = self.artist_file.replace("- Artists.txt", "- Tracks.txt")
@@ -54,13 +63,17 @@ class BeatSaberSpotify:
         self.jsonFile = os.path.join(self.custom_playlists_directory,
                                     "{0}.json".format(self.playlist_name))
         os.remove(image)
+        logging.info(f'Playlist Name: {self.playlist_name}')
 
     def downloadSong(self, songName, artistName, got_songs, songlist):
-        print('Grabbing {0} by {1}'.format(songName, artistName).encode('utf-8'))
+        print('Grabbing {0} by {1}'.format(songName, artistName).encode('utf-8'), flush=True)
+        logging.info('Grabbing {0} by {1}'.format(songName, artistName).encode('utf-8'))
         downloader = bs.BeatSaver()
         songCover = os.path.join(self.download_directory, songName + ".png")
+        logging.debug(f'Song Cover: {songCover}')
 
         bsSongId, bsSongName, bsUsername = downloader.get_song_info(songName)
+        logging.debug(f'BeatSaver Song Info: {bsSongId}, {bsSongName}, {bsUsername}')
 
         if bsSongId != None:
             downloader.download_song_from_id(bsSongId, bsSongName, bsUsername, self.custom_songs_directory, self.unzip)
@@ -82,8 +95,11 @@ class BeatSaberSpotify:
         if bsSongId != None:
             got_songs.value += 1
             print(u'Current' + str(got_songs.value))
+            for char in self.invalid:
+                bsSongName = bsSongName.replace(char, '')
             hash= idgrabber.get_id(os.path.join(self.custom_songs_directory, "{0} ({1} - {2})".format(bsSongId, bsSongName, bsUsername)))
             with open(self.jsonFile, 'r') as f:songlist = json.load(f)
+            print(f'Adding {bsSongName} to playlist file', flush=True)
             self.addToJson(songName=bsSongName, hash=hash, songlist=songlist)
         else:
             return ''
@@ -99,7 +115,6 @@ class BeatSaberSpotify:
             with open(self.jsonFile, 'r+') as f:
                 songlist['songs'].append(
                     {
-                        'songName': songName,
                         'hash': hash
                     }
                 )
@@ -132,7 +147,7 @@ class BeatSaberSpotify:
                     item = list(item)
                     item.extend((got_songs, songlist))
                     items[i] = item
-                print(items)
+                logging.debug(f'Items to download: {items}'.encode('utf-8'))
                 with mp.Pool(processes=mp.cpu_count() - 1) as p:
                     p.starmap(self.downloadSong, items)
             

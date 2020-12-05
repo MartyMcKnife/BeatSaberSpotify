@@ -18,7 +18,8 @@ except ImportError:
     install('wget')
     import wget
 
-
+client_id = None
+client_secret = None
 
 class SpotifyAPI:
     def __init__(self):
