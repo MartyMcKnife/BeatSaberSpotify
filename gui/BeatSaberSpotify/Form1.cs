@@ -7,7 +7,9 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Remoting.Channels;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DotNetEnv;
@@ -17,10 +19,17 @@ namespace BeatSaberSpotify
 {
     public partial class Form1 : Form
     {
-        bool createFile = true;
         public Form1()
         {
             InitializeComponent();
+            if (progress.Value == progress.Maximum)
+            {
+                progress.Value = 0;
+                btnStart.Text = "Start";
+            }
+            if (File.Exists("beatsaberspotify.log")) {
+                File.Delete("beatsaberspotify.log");
+            }
         }
 
         private void Label1_Click(object sender, EventArgs e)
@@ -51,20 +60,20 @@ namespace BeatSaberSpotify
         private void BtnStart_Click(object sender, EventArgs e)
         {
             //Starts the program, and starts the progressbar
-            try
+
+            if (btnStart.Text == "Start")
             {
-                createFile = true;
+                btnStart.Text = "Stop";
                 pythonRun.RunWorkerAsync();
-                if (progress.Value == progress.Maximum)
-                {
-                    progress.Value = 0;
-                }
             }
-            //10/10 Error catching
-            catch
+            else
             {
-                Console.WriteLine("stop pressing the button you banana");
+                pythonRun.CancelAsync();
+                btnStart.Text = "Start";
+                
+                    
             }
+                
 
 
 
@@ -72,6 +81,7 @@ namespace BeatSaberSpotify
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+            pythonRun.WorkerSupportsCancellation = true;
             //All the secret stuff is stored in .env file WHICH YOU CANT HAVE!
             //If you are building from source, you can delete the next line
             DotNetEnv.Env.Load();
@@ -79,29 +89,38 @@ namespace BeatSaberSpotify
             string path = txtPath.Text;
             string uri = txtURI.Text;
             string username = txtUser.Text;
-            string headset = txtHeadset.Text;
+            string headsetType = "";
+            txtHeadset.Invoke(new MethodInvoker(delegate { headsetType = txtHeadset.Text; }));
             //If you are building from source, replace these with your client and secret id
             string client_id = Environment.GetEnvironmentVariable("SPOTIPY-CLIENT-ID");
             string secret_id = Environment.GetEnvironmentVariable("SPOTIPY -SECRET-ID");
+
             //Runs the program from a local directory
             string directory = Path.GetDirectoryName(Application.ExecutablePath);
             string python_folder = @"python/run.py";
             string python_directory = Path.Combine(directory, python_folder);
+            python_directory = @"C:\Users\Home\Documents\BeatSaverSpotify\python\run.py";
             //Parse arguements to an array
-            string[] args = { path, uri, username, client_id, secret_id, headset };
+   
+            string[] args = { path, uri, username, client_id, secret_id, headsetType };
             //RUN IT!
-            run_cmd(python_directory, args);
-
-
-
+            if (File.Exists(python_directory))
+            {
+                run_cmd(python_directory, args, sender);
+                return;
+            }
+            else
+            {
+                txtOutput.Invoke(new MethodInvoker(delegate { txtOutput.Text = "Cannot find python executable. Are you sure you downloaded everything?"; })); 
+            }
         }
 
-        public void run_cmd(string cmd, string[] args)
+        public void run_cmd(string cmd, string[] args, object sender)
         {
-            createFile = false;
+            
             //Create process, and change settings
             Process process = new Process();
-            process.StartInfo.FileName = "python.exe";
+            process.StartInfo.FileName = string.Format(@"C:\Users\{0}\AppData\Local\Programs\Python\Python39\python.exe", Environment.UserName);
             process.StartInfo.Arguments = string.Format("\"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{5}\" \"{6}\"", cmd, args[0], args[1], args[2], args[3], args[4], args[5]);
             process.StartInfo.UseShellExecute = false;// Do not use OS shell
             process.StartInfo.CreateNoWindow = true; // We don't need new window
@@ -116,11 +135,31 @@ namespace BeatSaberSpotify
             //recieve data asyncronously, others program looks like it is hanging
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();
+            
+            while (true) 
+            {
+                Console.WriteLine((sender as BackgroundWorker).CancellationPending);
+                if ((sender as BackgroundWorker).CancellationPending == true)
+                {
+                    foreach (var processToKill in Process.GetProcessesByName(string.Format("python", Environment.UserName)))
+                    {
+                        Console.WriteLine(processToKill);
+                        processToKill.Kill();
+                    }
+
+                    return;
+                }
+                Thread.Sleep(1000);
+            }
+            
+            
+            
+            
+            
+          
+            
 
 
-            process.WaitForExit();
-
-   
 
         }
 
@@ -154,6 +193,22 @@ namespace BeatSaberSpotify
                         int current = int.Parse(replaced);
                         progress.Invoke(new MethodInvoker(delegate { progress.Value = current; }));
                     }
+                    else
+                    {
+                        //Logging
+                        if (line != null)
+                        {
+                            if (line == "Error has occured! Check log for more details")
+                            {
+                                progress.Invoke(new MethodInvoker(delegate { progress.Value = 0; }));
+                                btnStart.Invoke(new MethodInvoker(delegate { btnStart.Text = "Start"; }));
+
+                            }
+                            txtOutput.Invoke(new MethodInvoker(delegate { txtOutput.AppendText(line); txtOutput.AppendText(Environment.NewLine); }));
+                        }
+
+
+                    }
                 }
             }
         }
@@ -162,6 +217,12 @@ namespace BeatSaberSpotify
         {
             //Similar stuff, just without logging stuff
             string line = e.Data;
+            if (line != null)
+            {
+                txtOutput.Invoke(new MethodInvoker(delegate { txtOutput.AppendText(line); txtOutput.AppendText(Environment.NewLine); }));
+            }
+            
+
         }
 
         private void TxtOutput_TextChanged(object sender, EventArgs e)
@@ -184,8 +245,3 @@ namespace BeatSaberSpotify
         }
     }
 }
-//Archive
-
-/*
-           
-           */

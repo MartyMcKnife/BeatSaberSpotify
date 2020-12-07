@@ -48,3 +48,21 @@ C:\Users\Home\OneDrive - Wesley College\Documents\beatsaberspotify\BeatSaberSpot
 C:\Users\Home\OneDrive - Wesley College\Documents\beatsaberspotify\BeatSaberSpotify\gui\BeatSaberSpotify\obj\Release\BeatSaberSpotify.csproj.CopyComplete
 C:\Users\Home\OneDrive - Wesley College\Documents\beatsaberspotify\BeatSaberSpotify\gui\BeatSaberSpotify\obj\Release\BeatSaberSpotify.exe
 C:\Users\Home\OneDrive - Wesley College\Documents\beatsaberspotify\BeatSaberSpotify\gui\BeatSaberSpotify\obj\Release\BeatSaberSpotify.pdb
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\bin\Release\BeatSaberSpotify.exe.config
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\bin\Release\BeatSaberSpotify.exe.manifest
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\bin\Release\BeatSaberSpotify.application
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\bin\Release\BeatSaberSpotify.exe
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\bin\Release\BeatSaberSpotify.pdb
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\bin\Release\DotNetEnv.dll
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\bin\Release\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\bin\Release\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\obj\Release\BeatSaberSpotify.csprojAssemblyReference.cache
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\obj\Release\BeatSaberSpotify.Form1.resources
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\obj\Release\BeatSaberSpotify.Properties.Resources.resources
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\obj\Release\BeatSaberSpotify.csproj.GenerateResource.cache
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\obj\Release\BeatSaberSpotify.csproj.CoreCompileInputs.cache
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\obj\Release\BeatSaberSpotify.exe.manifest
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\obj\Release\BeatSaberSpotify.application
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\obj\Release\BeatSaberSpotify.csproj.CopyComplete
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\obj\Release\BeatSaberSpotify.exe
+C:\Users\Home\Documents\BeatSaverSpotify\gui\BeatSaberSpotify\obj\Release\BeatSaberSpotify.pdb

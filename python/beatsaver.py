@@ -15,6 +15,7 @@ try:
 except ImportError:
     install('requests')
     install('fuzzywuzzy')
+    install('python-Levenshtein')
     install('wget')
     import requests
     from fuzzywuzzy import fuzz
@@ -42,7 +43,7 @@ class BeatSaver:
                 songName = content[i]["name"]
                 username = content[i]['uploader']['username']
                 correct = fuzz.token_sort_ratio(songName, track)
-                logging.debug(f'Certainty for {track}: {correct} (Returned song is {songName})')
+                logging.debug(f'Certainty for {track}: {correct} (Returned song is {songName})'.encode('utf-8'))
                 if correct > 70:
                     stats = content[i]["stats"]
                     upvotes = stats["upVotes"]
@@ -68,7 +69,7 @@ class BeatSaver:
             song_name = song_name.replace(char, '')
 
         folder_path = os.path.join(root_path, '{0} ({1} - {2})'.format(id, song_name, username))
-        logging.debug(f'Folder path is {folder_path}')
+        logging.debug(f'Folder path is {folder_path}'.encode('utf-8'))
         # stolen from stack overflow - gets the song download id, downloads, and copies it into a zip file with the correct name
         if not os.path.isdir(folder_path):
             if unzip == True:

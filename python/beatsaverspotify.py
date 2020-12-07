@@ -17,25 +17,36 @@ import logging
 class BeatSaberSpotify:
     def __init__(self, root_path, username, playlist_id, headsetType):
         self.total_songs = 0
-        self.download_directory = os.path.join(os.getcwd(), "downloads")
-        Path(self.download_directory).mkdir(parents=True, exist_ok=True)
+        self.unzip = True
+        customlevels = "Beat Saber_Data\\CustomLevels"
+        playlist = 'Playlists'
+        
         if headsetType == "sidequest":
             root_path = os.getcwd()
             self.unzip = False
-        self.unzip = True
-        self.custom_songs_directory = os.path.join(root_path, "Beat Saber_Data\\CustomLevels")
-        self.custom_playlists_directory = os.path.join(root_path, 'Playlists')
+            customlevels = 'Songs'
+            playlist = 'Playlist'
+
+        self.download_directory = os.path.join(os.getcwd(), "downloads")
+        self.custom_songs_directory = os.path.join(root_path, customlevels)
+        self.custom_playlists_directory = os.path.join(root_path, playlist)
+
         self.invalid = '<>"|?*\/'
+        if self.unzip == False:
+            Path(self.custom_playlists_directory).mkdir(parents=True, exist_ok=True)
+            Path(self.custom_songs_directory).mkdir(parents=True, exist_ok=True)
 
-        logging.info(f'Download Directory: {self.download_directory}')
-        logging.info(f'Custom Songs Directory: {self.custom_songs_directory}')
-        logging.info(f'Custom Playlists Directory: {self.custom_playlists_directory}')
-        logging.info(f'Unzip?: {self.unzip}')
+        Path(self.download_directory).mkdir(parents=True, exist_ok=True)
+
+
+        logging.debug(f'Download Directory: {self.download_directory}'.encode('utf-8'))
+        logging.debug(f'Custom Songs Directory: {self.custom_songs_directory}'.encode('utf-8'))
+        logging.debug(f'Custom Playlists Directory: {self.custom_playlists_directory}'.encode('utf-8'))
+        logging.debug(f'Unzip?: {self.unzip}')
+        
         
 
-        
-
-        if not os.path.isdir(self.custom_songs_directory):
+        if not os.path.isdir(self.custom_songs_directory) and self.unzip == True:
             raise OSError('Could not find custom songs directory. Make sure you have the right path and try again')
 
         self.playlist_template = {
@@ -63,17 +74,17 @@ class BeatSaberSpotify:
         self.jsonFile = os.path.join(self.custom_playlists_directory,
                                     "{0}.json".format(self.playlist_name))
         os.remove(image)
-        logging.info(f'Playlist Name: {self.playlist_name}')
+        logging.info(f'Playlist Name: {self.playlist_name}'.encode('utf-8'))
 
     def downloadSong(self, songName, artistName, got_songs, songlist):
         print('Grabbing {0} by {1}'.format(songName, artistName).encode('utf-8'), flush=True)
         logging.info('Grabbing {0} by {1}'.format(songName, artistName).encode('utf-8'))
         downloader = bs.BeatSaver()
         songCover = os.path.join(self.download_directory, songName + ".png")
-        logging.debug(f'Song Cover: {songCover}')
+        logging.debug(f'Song Cover: {songCover}'.encode('utf-8'))
 
         bsSongId, bsSongName, bsUsername = downloader.get_song_info(songName)
-        logging.debug(f'BeatSaver Song Info: {bsSongId}, {bsSongName}, {bsUsername}')
+        logging.debug(f'BeatSaver Song Info: {bsSongId}, {bsSongName}, {bsUsername}'.encode('utf-8'))
 
         if bsSongId != None:
             downloader.download_song_from_id(bsSongId, bsSongName, bsUsername, self.custom_songs_directory, self.unzip)
@@ -94,12 +105,12 @@ class BeatSaberSpotify:
         os.remove(songCover)
         if bsSongId != None:
             got_songs.value += 1
-            print(u'Current' + str(got_songs.value))
+            print(u'Current' + str(got_songs.value), flush=True)
             for char in self.invalid:
                 bsSongName = bsSongName.replace(char, '')
-            hash= idgrabber.get_id(os.path.join(self.custom_songs_directory, "{0} ({1} - {2})".format(bsSongId, bsSongName, bsUsername)))
+            hash = idgrabber.get_id(os.path.join(self.custom_songs_directory, "{0} ({1} - {2})".format(bsSongId, bsSongName, bsUsername)), self.unzip)
             with open(self.jsonFile, 'r') as f:songlist = json.load(f)
-            print(f'Adding {bsSongName} to playlist file', flush=True)
+            print(f'Adding {bsSongName} to playlist file'.encode('utf-8'), flush=True)
             self.addToJson(songName=bsSongName, hash=hash, songlist=songlist)
         else:
             return ''
@@ -143,11 +154,12 @@ class BeatSaberSpotify:
                 print('Total' + str(self.total_songs), flush=True)
                 print('Collecting songs from BeatSaber and BeatSage. This can take a while, depending on the size of the playlist', flush=True)
                 items = list(zip(tracks, artists))
+                logging.debug(f'Items to download: {items}'.encode('utf-8'))
                 for i, item in enumerate(items):
                     item = list(item)
                     item.extend((got_songs, songlist))
                     items[i] = item
-                logging.debug(f'Items to download: {items}'.encode('utf-8'))
+                
                 with mp.Pool(processes=mp.cpu_count() - 1) as p:
                     p.starmap(self.downloadSong, items)
             

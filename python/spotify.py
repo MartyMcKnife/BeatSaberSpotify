@@ -23,9 +23,10 @@ client_secret = None
 
 class SpotifyAPI:
     def __init__(self):
+        
         # Generates Credentials
         credentials = oauth2.SpotifyClientCredentials(
-            client_id="0ae28390d808489dae0689e77389de23", client_secret="6d3cbce3d4b7426897c65301972509a9")
+            client_id=client_id, client_secret=client_secret)
         token = credentials.get_access_token()
         self.spotify = spotipy.Spotify(auth=token)
         self.invalid = '<>:"/\|?*'
@@ -63,7 +64,7 @@ class SpotifyAPI:
                     #Download Album Cover
                     if pathForCovers != False:
                         if i == 1:
-                            print('Downloading Album covers')
+                            print('Downloading Album covers', flush=True)
                         images = track["album"]["images"]
                         url = images[0]["url"]
                         filename = track["name"]

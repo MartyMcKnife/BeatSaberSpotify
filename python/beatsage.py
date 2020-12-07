@@ -31,7 +31,7 @@ class BeatSage:
         self.downloadUrl = "https://beatsage.com/beatsaber_custom_level_download/"
         self.folder_path = os.path.join(path, 'BeatSage ({0} - {1})'.format(songTitle, songArtist))
         self.zipPath = self.folder_path + ".zip"
-        logging.debug(f'Folder Path: {self.folder_path}')
+        logging.debug(f'Folder Path: {self.folder_path}'.encode('utf-8'))
     def remove_from_zip(self, zipfname, *filenames):
             tempdir = tempfile.mkdtemp()
             try:
@@ -97,7 +97,7 @@ class BeatSage:
                         self.remove_from_zip(self.zipPath, 'cover.jpg')
                         with ZipFile(self.zipPath, "a") as z:
                             z.write(songCover, arcname="cover.jpg")
-                    print("Downloaded!", flush=True)
+                    print("Downloaded {0}!".format(songTitle), flush=True)
                     return 'done'
                 else:
                     raise SystemError("BeatSage had an unexpected server error, or is down. Please try again later. Server Response Code: {0}".format(download.status_code))
