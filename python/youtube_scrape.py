@@ -2,6 +2,7 @@ import json
 import subprocess
 import pkg_resources
 import sys
+import logger as l
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -14,6 +15,7 @@ except ImportError:
 class youtubeSearch:
     def __init__(self):
         self.API_KEY = "AIzaSyD_yFlfIHjLlnok73b3iS8x6389ZFEr9AM"
+        self.logger = l.create_logger()
     def scrape_songs_from_youtube(self, song, artist):
         print("Getting link from YouTube", flush=True)
 
@@ -21,11 +23,14 @@ class youtubeSearch:
         if id != None:
             if len(duration) >= 8:
                 print("Song is longer than 10 Minutes. Skipping", flush=True)
+                self.logger.debug(f'{song} skipped as it is longer than 10 mins ({duration})')
                 return None
             elif allowed != True:
                 print("Song is blocked in the US, so BeatSage cannot download it. Skipping", flush=True)
+                self.logger.debug(f'{song} skipped as it is blocked in the us')
                 return None
             else:
+                self.logger.debug(f'Sending back {id}')
                 return "https://www.youtube.com/watch?v=" + str(id)
         else:
             return id
@@ -50,6 +55,7 @@ class youtubeSearch:
             return id, duration, allowed
         except (KeyError, IndexError):
             print("Song cannot be found on YouTube. Skipping", flush=True)
+            self.logger.debug(f'{query} skipped as it could not be found')
             return None, None, None
        
         

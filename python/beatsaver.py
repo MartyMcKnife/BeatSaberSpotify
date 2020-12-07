@@ -5,6 +5,7 @@ import sys
 import subprocess
 import pkg_resources
 import logging
+import logger as l
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -26,6 +27,7 @@ class BeatSaver:
     def __init__(self):
         self.headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
         self.invalid = '<>"|?*\/'
+        self.logger = l.create_logger()
     def get_song_info(self, track):
         trackParsed = track.replace(" ", "%20")
         # get the url
@@ -43,7 +45,7 @@ class BeatSaver:
                 songName = content[i]["name"]
                 username = content[i]['uploader']['username']
                 correct = fuzz.token_sort_ratio(songName, track)
-                logging.debug(f'Certainty for {track}: {correct} (Returned song is {songName})'.encode('utf-8'))
+                self.logger.debug(f'Certainty for {track}: {correct} (Returned song is {songName})'.encode('utf-8'))
                 if correct > 70:
                     stats = content[i]["stats"]
                     upvotes = stats["upVotes"]
@@ -69,7 +71,7 @@ class BeatSaver:
             song_name = song_name.replace(char, '')
 
         folder_path = os.path.join(root_path, '{0} ({1} - {2})'.format(id, song_name, username))
-        logging.debug(f'Folder path is {folder_path}'.encode('utf-8'))
+        self.logger.debug(f'Folder path is {folder_path}'.encode('utf-8'))
         # stolen from stack overflow - gets the song download id, downloads, and copies it into a zip file with the correct name
         if not os.path.isdir(folder_path):
             if unzip == True:
@@ -79,10 +81,10 @@ class BeatSaver:
                 with open(folder_path + ".zip", 'wb') as f:
                     f.write(resp.content) 
             print("Downloaded {0}".format(song_name).encode('utf-8'), flush=True)
-            logging.info("Downloaded {0}".format(song_name).encode('utf-8'))
+            self.logger.info("Downloaded {0}".format(song_name).encode('utf-8'))
         else:
             print("Song: {0} already downloaded. Skipping".format(song_name).encode('utf-8'), flush=True)
-            logging.info("Song: {0} already downloaded. Skipping".format(song_name).encode('utf-8'))
+            self.logger.info("Song: {0} already downloaded. Skipping".format(song_name).encode('utf-8'))
 
 
 

@@ -5,6 +5,7 @@ import multiprocessing as mp
 import logging
 import spotify
 import subprocess
+import logger as l
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -13,24 +14,8 @@ def install(package):
 
 
 
-#TODO 
-# Logging
-# Add headset type to gui
-# FIXME
-# Formatting and Commenting
-
 
 if __name__ == '__main__':
-    logging.basicConfig(format='[%(asctime)s] [%(levelname)s] - %(module)s / %(funcName)s %(process)d - : %(message)s', datefmt='%d-%b-%y %H:%M:%S', filename='beatsaberspotify.log', level=logging.DEBUG,filemode='a',encoding='utf-8')
-    try:
-        import multiprocessing_logging
-    except ImportError:
-        install('multiprocessing-logging')
-        import multiprocessing_logging
-    multiprocessing_logging.install_mp_handler()
-    logging.info('\n' * 10)
-    logging.info('Program started')
-
     if len(sys.argv) > 1:
         root_path = sys.argv[1]
         logging.info("Path:" + str(root_path))
@@ -47,10 +32,17 @@ if __name__ == '__main__':
         if headsetType == 'Oculus Quest/Quest 2':
             headsetType = "sidequest"
 
+
+    bss = bs.BeatSaberSpotify(root_path, username, headsetType)
+    logger = l.create_logger()
+    logger.info('\n' * 10)
+    logger.info('Program started')
+
+    
+
     print('Starting up', flush=True)
     try:
-        
-        bs.BeatSaberSpotify(root_path, username, uri, headsetType).run(username, uri)
+        bss.run(username, uri)
     except Exception as e:
         print('Error has occured! Check log for more details', flush=True)
         logging.error('Exception has occured', exc_info=True)

@@ -22,14 +22,6 @@ namespace BeatSaberSpotify
         public Form1()
         {
             InitializeComponent();
-            if (progress.Value == progress.Maximum)
-            {
-                progress.Value = 0;
-                btnStart.Text = "Start";
-            }
-            if (File.Exists("beatsaberspotify.log")) {
-                File.Delete("beatsaberspotify.log");
-            }
         }
 
         private void Label1_Click(object sender, EventArgs e)
@@ -107,6 +99,8 @@ namespace BeatSaberSpotify
             if (File.Exists(python_directory))
             {
                 run_cmd(python_directory, args, sender);
+                progress.Invoke(new MethodInvoker(delegate { progress.Value = 0; }));
+                btnStart.Invoke(new MethodInvoker(delegate { btnStart.Text = "Start"; }));
                 return;
             }
             else
@@ -136,20 +130,26 @@ namespace BeatSaberSpotify
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();
             
+            
+            
             while (true) 
             {
-                Console.WriteLine((sender as BackgroundWorker).CancellationPending);
+                Process[] pname = Process.GetProcessesByName("python");
+                if (pname.Length == 0)
+                {
+                    return;
+                }
+
                 if ((sender as BackgroundWorker).CancellationPending == true)
                 {
-                    foreach (var processToKill in Process.GetProcessesByName(string.Format("python", Environment.UserName)))
+                    foreach (var processToKill in pname)
                     {
-                        Console.WriteLine(processToKill);
                         processToKill.Kill();
                     }
 
                     return;
                 }
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
             }
             
             
@@ -242,6 +242,18 @@ namespace BeatSaberSpotify
         private void Browser_HelpRequest(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (!File.Exists("beatsaberspotify.log"))
+            {
+                File.Create("beatsaberspotify.log");
+            }
+            else
+            {
+                File.WriteAllText("beatsaberspotify.log", string.Empty);
+            }
         }
     }
 }

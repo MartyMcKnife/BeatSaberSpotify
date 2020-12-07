@@ -10,12 +10,11 @@ import beatsage as ai
 import youtube_scrape as yt
 import idgrabber 
 import multiprocessing as mp
-import logging
-
+import logger as l 
 
 
 class BeatSaberSpotify:
-    def __init__(self, root_path, username, playlist_id, headsetType):
+    def __init__(self, root_path, username, headsetType):
         self.total_songs = 0
         self.unzip = True
         customlevels = "Beat Saber_Data\\CustomLevels"
@@ -38,11 +37,13 @@ class BeatSaberSpotify:
 
         Path(self.download_directory).mkdir(parents=True, exist_ok=True)
 
+        self.logger = l.create_logger()
 
-        logging.debug(f'Download Directory: {self.download_directory}'.encode('utf-8'))
-        logging.debug(f'Custom Songs Directory: {self.custom_songs_directory}'.encode('utf-8'))
-        logging.debug(f'Custom Playlists Directory: {self.custom_playlists_directory}'.encode('utf-8'))
-        logging.debug(f'Unzip?: {self.unzip}')
+
+        self.logger.debug(f'Download Directory: {self.download_directory}'.encode('utf-8'))
+        self.logger.debug(f'Custom Songs Directory: {self.custom_songs_directory}'.encode('utf-8'))
+        self.logger.debug(f'Custom Playlists Directory: {self.custom_playlists_directory}'.encode('utf-8'))
+        self.logger.debug(f'Unzip?: {self.unzip}')
         
         
 
@@ -64,7 +65,7 @@ class BeatSaberSpotify:
         """
         Fetches all required info from spotify
         """
-        logging.info('Speaking to Spotify API')
+        self.logger.info('Speaking to Spotify API')
         spotify = sp.SpotifyAPI()
         self.artist_file = spotify.write_playlist(username, playlist_id, self.download_directory)
         self.track_file = self.artist_file.replace("- Artists.txt", "- Tracks.txt")
@@ -74,17 +75,17 @@ class BeatSaberSpotify:
         self.jsonFile = os.path.join(self.custom_playlists_directory,
                                     "{0}.json".format(self.playlist_name))
         os.remove(image)
-        logging.info(f'Playlist Name: {self.playlist_name}'.encode('utf-8'))
+        self.logger.info(f'Playlist Name: {self.playlist_name}'.encode('utf-8'))
 
     def downloadSong(self, songName, artistName, got_songs, songlist):
         print('Grabbing {0} by {1}'.format(songName, artistName).encode('utf-8'), flush=True)
-        logging.info('Grabbing {0} by {1}'.format(songName, artistName).encode('utf-8'))
+        self.logger.info('Grabbing {0} by {1}'.format(songName, artistName).encode('utf-8'))
         downloader = bs.BeatSaver()
         songCover = os.path.join(self.download_directory, songName + ".png")
-        logging.debug(f'Song Cover: {songCover}'.encode('utf-8'))
+        self.logger.debug(f'Song Cover: {songCover}'.encode('utf-8'))
 
         bsSongId, bsSongName, bsUsername = downloader.get_song_info(songName)
-        logging.debug(f'BeatSaver Song Info: {bsSongId}, {bsSongName}, {bsUsername}'.encode('utf-8'))
+        self.logger.debug(f'BeatSaver Song Info: {bsSongId}, {bsSongName}, {bsUsername}'.encode('utf-8'))
 
         if bsSongId != None:
             downloader.download_song_from_id(bsSongId, bsSongName, bsUsername, self.custom_songs_directory, self.unzip)
@@ -130,10 +131,6 @@ class BeatSaberSpotify:
                     }
                 )
                 f.write(json.dumps(songlist, indent=4, sort_keys=True))
-
-
-        
-
     
     def run(self, username, playlist_id):
 
@@ -154,7 +151,7 @@ class BeatSaberSpotify:
                 print('Total' + str(self.total_songs), flush=True)
                 print('Collecting songs from BeatSaber and BeatSage. This can take a while, depending on the size of the playlist', flush=True)
                 items = list(zip(tracks, artists))
-                logging.debug(f'Items to download: {items}'.encode('utf-8'))
+                self.logger.debug(f'Items to download: {items}'.encode('utf-8'))
                 for i, item in enumerate(items):
                     item = list(item)
                     item.extend((got_songs, songlist))

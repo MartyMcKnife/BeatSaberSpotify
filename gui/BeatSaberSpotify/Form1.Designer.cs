@@ -60,7 +60,7 @@
             // txtPath
             // 
             this.txtPath.Location = new System.Drawing.Point(126, 17);
-            this.txtPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPath.Margin = new System.Windows.Forms.Padding(2);
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(173, 20);
             this.txtPath.TabIndex = 1;
@@ -68,7 +68,7 @@
             // btnExplore
             // 
             this.btnExplore.Location = new System.Drawing.Point(302, 16);
-            this.btnExplore.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExplore.Margin = new System.Windows.Forms.Padding(2);
             this.btnExplore.Name = "btnExplore";
             this.btnExplore.Size = new System.Drawing.Size(27, 19);
             this.btnExplore.TabIndex = 2;
@@ -80,7 +80,7 @@
             // btnHelp
             // 
             this.btnHelp.Location = new System.Drawing.Point(302, 43);
-            this.btnHelp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(2);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(27, 19);
             this.btnHelp.TabIndex = 5;
@@ -92,7 +92,7 @@
             // txtURI
             // 
             this.txtURI.Location = new System.Drawing.Point(126, 44);
-            this.txtURI.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtURI.Margin = new System.Windows.Forms.Padding(2);
             this.txtURI.Name = "txtURI";
             this.txtURI.Size = new System.Drawing.Size(173, 20);
             this.txtURI.TabIndex = 4;
@@ -112,7 +112,7 @@
             // txtUser
             // 
             this.txtUser.Location = new System.Drawing.Point(126, 71);
-            this.txtUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(2);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(173, 20);
             this.txtUser.TabIndex = 7;
@@ -130,7 +130,7 @@
             // txtOutput
             // 
             this.txtOutput.Location = new System.Drawing.Point(130, 142);
-            this.txtOutput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtOutput.Margin = new System.Windows.Forms.Padding(2);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ReadOnly = true;
@@ -142,7 +142,7 @@
             // btnStart
             // 
             this.btnStart.Location = new System.Drawing.Point(22, 142);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(84, 27);
             this.btnStart.TabIndex = 9;
@@ -162,7 +162,7 @@
             // progress
             // 
             this.progress.Location = new System.Drawing.Point(22, 123);
-            this.progress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progress.Margin = new System.Windows.Forms.Padding(2);
             this.progress.Name = "progress";
             this.progress.Size = new System.Drawing.Size(302, 15);
             this.progress.TabIndex = 10;
@@ -170,7 +170,7 @@
             // btnHe
             // 
             this.btnHe.Location = new System.Drawing.Point(22, 180);
-            this.btnHe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnHe.Margin = new System.Windows.Forms.Padding(2);
             this.btnHe.Name = "btnHe";
             this.btnHe.Size = new System.Drawing.Size(84, 26);
             this.btnHe.TabIndex = 11;
@@ -223,9 +223,10 @@
             this.Controls.Add(this.txtPath);
             this.Controls.Add(this.lblPath);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "BeatSaberSpotify";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
