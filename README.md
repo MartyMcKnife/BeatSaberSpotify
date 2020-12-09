@@ -6,8 +6,8 @@
  # Requirements
 [.NET 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472)
 
-[Python 3.8](https://www.python.org/downloads/)
+[Python 3.9+](https://www.python.org/downloads/)
 
 [Beat Saber Song Loader](https://github.com/xyonico/BeatSaberSongLoader/releases)
 
-Playlist Loader
+[Playlist Loader](https://github.com/rithik-b/PlaylistLoaderPlugin/tree/master/PlaylistLoaderPlugin)
