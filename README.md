@@ -1,6 +1,6 @@
 # BeatSaberSpotify
- A simple script to turn your spotify playlist into a beat saber playlist
- 
+ Finally, a way to turn your Spotify playlist into a BeatSaber playlist!
+ Complete with BeatSaver and BeatSage integration
  Usage Guide: https://github.com/MartyMcKnife/BeatSaberSpotify/wiki
  
  # Requirements
