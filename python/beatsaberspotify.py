@@ -84,8 +84,8 @@ class BeatSaberSpotify:
         songCover = os.path.join(self.download_directory, songName + ".png")
         self.logger.debug(f'Song Cover: {songCover}'.encode('utf-8'))
 
-        bsSongId, bsSongName, bsUsername = downloader.get_song_info(songName)
-        self.logger.debug(f'BeatSaver Song Info: {bsSongId}, {bsSongName}, {bsUsername}'.encode('utf-8'))
+        bsSongId, bsSongName, bsUsername = downloader.get_song_info(songName, artistName)
+        self.logger.debug(f'BeatSaver Song Info for {songName}: {bsSongId}, {bsSongName}, {bsUsername}'.encode('utf-8'))
 
         if bsSongId != None:
             downloader.download_song_from_id(bsSongId, bsSongName, bsUsername, self.custom_songs_directory, self.unzip)
@@ -114,7 +114,8 @@ class BeatSaberSpotify:
             print(f'Adding {bsSongName} to playlist file'.encode('utf-8'), flush=True)
             self.addToJson(songName=bsSongName, hash=hash, songlist=songlist)
         else:
-            return ''
+            return
+            
     def addToJson(self, songlist = None, write=False, songName=None, hash=None, ):
         """
         Adds given track to Beatsaber Playlist

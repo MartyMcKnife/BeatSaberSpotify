@@ -85,13 +85,12 @@ namespace BeatSaberSpotify
             txtHeadset.Invoke(new MethodInvoker(delegate { headsetType = txtHeadset.Text; }));
             //If you are building from source, replace these with your client and secret id
             string client_id = Environment.GetEnvironmentVariable("SPOTIPY-CLIENT-ID");
-            string secret_id = Environment.GetEnvironmentVariable("SPOTIPY -SECRET-ID");
+            string secret_id = Environment.GetEnvironmentVariable("SPOTIPY-SECRET-ID");
 
             //Runs the program from a local directory
             string directory = Path.GetDirectoryName(Application.ExecutablePath);
             string python_folder = @"python/run.py";
             string python_directory = Path.Combine(directory, python_folder);
-            python_directory = @"C:\Users\Home\Documents\BeatSaverSpotify\python\run.py";
             //Parse arguements to an array
    
             string[] args = { path, uri, username, client_id, secret_id, headsetType };
@@ -105,7 +104,10 @@ namespace BeatSaberSpotify
             }
             else
             {
-                txtOutput.Invoke(new MethodInvoker(delegate { txtOutput.Text = "Cannot find python executable. Are you sure you downloaded everything?"; })); 
+                txtOutput.Invoke(new MethodInvoker(delegate { txtOutput.Text = "Cannot find python executable. Are you sure you downloaded everything?"; }));
+                progress.Invoke(new MethodInvoker(delegate { progress.Value = 0; }));
+                btnStart.Invoke(new MethodInvoker(delegate { btnStart.Text = "Start"; }));
+                return;
             }
         }
 
@@ -152,15 +154,6 @@ namespace BeatSaberSpotify
                 Thread.Sleep(500);
             }
             
-            
-            
-            
-            
-          
-            
-
-
-
         }
 
         private void cmd_DataReceived(object sender, DataReceivedEventArgs e)
@@ -243,17 +236,14 @@ namespace BeatSaberSpotify
         {
 
         }
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e){
+            
+            Process[] pname = Process.GetProcessesByName("python");
+            foreach (var processToKill in pname)
+            {
+                processToKill.Kill();
+            }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            if (!File.Exists("beatsaberspotify.log"))
-            {
-                File.Create("beatsaberspotify.log");
-            }
-            else
-            {
-                File.WriteAllText("beatsaberspotify.log", string.Empty);
-            }
         }
     }
 }

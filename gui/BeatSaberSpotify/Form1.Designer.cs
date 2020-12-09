@@ -226,7 +226,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "BeatSaberSpotify";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(Form1_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
