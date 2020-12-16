@@ -45,6 +45,9 @@
             this.btnHe = new System.Windows.Forms.Button();
             this.txtHeadset = new System.Windows.Forms.ComboBox();
             this.lblHeadset = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
+            this.txtVersion = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblPath
@@ -104,9 +107,9 @@
             this.lblURI.Location = new System.Drawing.Point(19, 45);
             this.lblURI.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblURI.Name = "lblURI";
-            this.lblURI.Size = new System.Drawing.Size(61, 13);
+            this.lblURI.Size = new System.Drawing.Size(74, 13);
             this.lblURI.TabIndex = 3;
-            this.lblURI.Text = "Spotify URI";
+            this.lblURI.Text = "Link to Playlist";
             this.lblURI.Click += new System.EventHandler(this.Label1_Click);
             // 
             // txtUser
@@ -129,7 +132,7 @@
             // 
             // txtOutput
             // 
-            this.txtOutput.Location = new System.Drawing.Point(130, 142);
+            this.txtOutput.Location = new System.Drawing.Point(130, 172);
             this.txtOutput.Margin = new System.Windows.Forms.Padding(2);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
@@ -141,7 +144,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(22, 142);
+            this.btnStart.Location = new System.Drawing.Point(22, 172);
             this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(84, 27);
@@ -161,7 +164,7 @@
             // 
             // progress
             // 
-            this.progress.Location = new System.Drawing.Point(22, 123);
+            this.progress.Location = new System.Drawing.Point(22, 150);
             this.progress.Margin = new System.Windows.Forms.Padding(2);
             this.progress.Name = "progress";
             this.progress.Size = new System.Drawing.Size(302, 15);
@@ -169,7 +172,7 @@
             // 
             // btnHe
             // 
-            this.btnHe.Location = new System.Drawing.Point(22, 180);
+            this.btnHe.Location = new System.Drawing.Point(22, 210);
             this.btnHe.Margin = new System.Windows.Forms.Padding(2);
             this.btnHe.Name = "btnHe";
             this.btnHe.Size = new System.Drawing.Size(84, 26);
@@ -203,11 +206,46 @@
             this.lblHeadset.TabIndex = 13;
             this.lblHeadset.Text = "Headset Type";
             // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(22, 127);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(86, 13);
+            this.lblVersion.TabIndex = 14;
+            this.lblVersion.Text = "BeatSage Model";
+            // 
+            // txtVersion
+            // 
+            this.txtVersion.FormattingEnabled = true;
+            this.txtVersion.Items.AddRange(new object[] {
+            "v2",
+            "v2-flow"});
+            this.txtVersion.Location = new System.Drawing.Point(126, 124);
+            this.txtVersion.Name = "txtVersion";
+            this.txtVersion.Size = new System.Drawing.Size(173, 21);
+            this.txtVersion.TabIndex = 15;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(304, 124);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(27, 19);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "?";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 224);
+            this.ClientSize = new System.Drawing.Size(340, 246);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.txtVersion);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblHeadset);
             this.Controls.Add(this.txtHeadset);
             this.Controls.Add(this.btnHe);
@@ -226,7 +264,8 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "BeatSaberSpotify";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(Form1_FormClosed);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,6 +289,9 @@
         private System.Windows.Forms.Button btnHe;
         private System.Windows.Forms.ComboBox txtHeadset;
         private System.Windows.Forms.Label lblHeadset;
+        private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.ComboBox txtVersion;
+        private System.Windows.Forms.Button button1;
     }
 }
 

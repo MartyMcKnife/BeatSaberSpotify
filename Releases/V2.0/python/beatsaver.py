@@ -6,6 +6,7 @@ import subprocess
 import pkg_resources
 import logging
 import logger as l
+from json.decoder import JSONDecodeError
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -25,7 +26,7 @@ except ImportError:
 
 class BeatSaver:
     def __init__(self):
-        self.headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+        self.headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Mobile Safari/537.36'}
         self.invalid = '<>"|?*\/'
         self.logger = l.create_logger()
     def get_song_info(self, track, artist):
@@ -33,13 +34,14 @@ class BeatSaver:
         # get the url
         url = "https://beatsaver.com/api/search/text/page:?q=" + str(trackParsed)
         # say hi to beatsaver, and see if he has the song
-        resp = requests.get(url, headers=self.headers)
-        info = resp.json()
-        self.logger.debug(f'Response back from BeatSaver is {info}'.encode('utf-8'))
+        
         # refine result
         
         # return the first key, hash and name
         try:
+            resp = requests.get(url, headers=self.headers, auth=('user', 'pass'))
+            info = resp.json()
+            self.logger.debug(f'Response back from BeatSaver is {info}'.encode('utf-8'))
             content = info["docs"]
             for i in range(4):
                 songID = content[i]["key"]
@@ -66,6 +68,7 @@ class BeatSaver:
             return None, None, None
         except (KeyError, IndexError):
             print("Song: {0} does not exist. Falling back to BeatSage".format(track).encode('utf-8'), flush=True)
+            logging.exception(f'Song: {track} exited with Exception:')
             return None, None, None
 
 
@@ -96,3 +99,4 @@ class BeatSaver:
 
 
 
+print(BeatSaver().get_song_info('Tank!', 'SEATBELTS'))

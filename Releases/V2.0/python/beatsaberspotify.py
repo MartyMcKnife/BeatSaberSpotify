@@ -103,7 +103,10 @@ class BeatSaberSpotify:
                 bsSongId = "BeatSage"
                 bsSongName = songName
                 bsUsername = artistName
-        os.remove(songCover)
+        try:
+            os.remove(songCover) 
+        except (FileNotFoundError) as e:
+            self.logger.warn(f'Song Cover could not be removed. Exception: {e}')
         if bsSongId != None:
             got_songs.value += 1
             print(u'Current' + str(got_songs.value), flush=True)

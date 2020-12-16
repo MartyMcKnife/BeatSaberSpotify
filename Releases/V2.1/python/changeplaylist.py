@@ -1,4 +1,4 @@
-import python.idgrabber as i 
+import idgrabber as i 
 from fuzzywuzzy import process
 import os
 import logging
@@ -42,16 +42,17 @@ def Update(pathToSongFolder, currentSongName, newSongName, zipped):
 """
 EDIT THE CODE BELOW HERE
 """
-pathToSongFolder = 'C:\Program Files (x86)\Steam\steamapps\common\Beat Saber\Beat Saber_Data\CustomLevels'
+pathToSongFolder = 'Enter your path to your BeatSaber Custom Songs folder. If you are a quest user, there should be a directory called Songs'
 
 
 currentSongName = [
-    "51fd (BLOODY STREAM - epg7ens)"
+    "A song that currently exists",
+    "Another song that exists"
 ]
 
 newSongName = [
-    "94a7 (BLOODY STREAM - Joetastic)"
-
+    "The song that you want updated",
+    "Cool Song"
 ]
 # Set this to false if you are a quest user
 folderArentZipped = True
