@@ -156,7 +156,6 @@ class BeatSaberSpotify:
             
             self.SpotifyWriter(username, playlist_id)
         else:
-            #TODO: Check this works
             self.youtubeWriter(playlist_id)
         self.playlist_template['playlistTitle'] = self.playlist_name
         self.playlist_template['image'] = "data:image/png;base64," + self.encoded_image
