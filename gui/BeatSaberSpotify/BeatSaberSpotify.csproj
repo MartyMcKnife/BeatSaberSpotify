@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Home\Documents\BeatSaverSpotify\Releases\V2.1\</PublishUrl>
+    <PublishUrl>C:\Users\Home\Documents\BeatSaverSpotify\Releases\V2.1.2\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -25,7 +25,7 @@
     <MapFileExtensions>false</MapFileExtensions>
     <ProductName>BeatSaberSpotify</ProductName>
     <PublisherName>MartyMcKnife</PublisherName>
-    <ApplicationRevision>35</ApplicationRevision>
+    <ApplicationRevision>38</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

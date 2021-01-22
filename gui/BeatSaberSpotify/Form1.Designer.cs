@@ -200,16 +200,17 @@
             // lblHeadset
             // 
             this.lblHeadset.AutoSize = true;
-            this.lblHeadset.Location = new System.Drawing.Point(22, 97);
+            this.lblHeadset.Location = new System.Drawing.Point(19, 100);
             this.lblHeadset.Name = "lblHeadset";
             this.lblHeadset.Size = new System.Drawing.Size(74, 13);
             this.lblHeadset.TabIndex = 13;
             this.lblHeadset.Text = "Headset Type";
+            this.lblHeadset.Click += new System.EventHandler(this.lblHeadset_Click);
             // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(22, 127);
+            this.lblVersion.Location = new System.Drawing.Point(19, 127);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(86, 13);
             this.lblVersion.TabIndex = 14;
