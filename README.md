@@ -10,4 +10,4 @@
 
 [Beat Saber Song Loader](https://github.com/xyonico/BeatSaberSongLoader/releases)
 
-[Playlist Loader](https://github.com/rithik-b/PlaylistLoaderPlugin/tree/master/PlaylistLoaderPlugin)
+[Playlist Loader](https://github.com/rithik-b/PlaylistManager/releases)
