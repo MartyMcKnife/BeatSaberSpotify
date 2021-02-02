@@ -3,6 +3,8 @@
  Complete with BeatSaver and BeatSage integration
  Usage Guide: https://github.com/MartyMcKnife/BeatSaberSpotify/wiki
  
+ ### Program not starting when you hit start? [SEE HERE](https://github.com/MartyMcKnife/BeatSaberSpotify/issues/19)
+ 
  # Requirements
 [.NET 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472)
 
