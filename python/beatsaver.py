@@ -3,7 +3,6 @@ from zipfile import ZipFile
 import io
 import sys
 import subprocess
-import pkg_resources
 import logger as l
 from json.decoder import JSONDecodeError
 
@@ -22,6 +21,7 @@ except ImportError:
     install("requests")
     install("fuzzywuzzy")
     install("python-Levenshtein")
+    install("python-Levenshtein-wheels")
     install("wget")
     import requests
     from requests.auth import HTTPBasicAuth
