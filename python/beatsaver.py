@@ -20,7 +20,6 @@ try:
 except ImportError:
     install("requests")
     install("fuzzywuzzy")
-    install("python-Levenshtein")
     install("python-Levenshtein-wheels")
     install("wget")
     import requests
