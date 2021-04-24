@@ -15,7 +15,7 @@ try:
     import spotipy.oauth2 as oauth2
     import wget
 except ImportError:
-    install("spotipy")
+    os.system('pip install "spotipy==2.16.1" --force-reinstall')
     import spotipy
     import spotipy.oauth2 as oauth2
 
